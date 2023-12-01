@@ -1,7 +1,11 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
+
+
 
 export default function LoginForm() {
     const [input, setInput] = useState("")
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
     e.preventDefault()
@@ -11,14 +15,15 @@ export default function LoginForm() {
   
     const handleSubmit = (e) => {
       e.preventDefault()
-        alert("Bonjour " + input);
         setInput("")   
+        navigate(`order/${input}`)
     }
   return (
-    <form action="" onSubmit={handleSubmit} >
+    <form action="submit" onSubmit={handleSubmit}  >
     <h1>Bienvenu chez nous !</h1>
     <h3>Connectez vous</h3>
-      <input type="text" placeholder='Entrez votre prénom' onChange={handleChange} value={input} required/><button >Accèdez à votre espace</button>
+      <input type="text" placeholder='Entrez votre prénom' onChange={handleChange} value={input}  required/><button >Accèdez à votre espace</button>
+      
     </form> 
   )
 }
