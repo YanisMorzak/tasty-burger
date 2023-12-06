@@ -23,18 +23,39 @@ export default function LoginForm() {
   return (
     <LoginFormStyled action="submit" onSubmit={handleSubmit}  >
     <h2>Bienvenu chez nous !</h2>
-    <h3>Connectez vous</h3>
+    <hr />
+    <h3>Connectez-vous</h3>
     <input type="text" placeholder='Entrez votre prénom' onChange={handleChange} value={input}  required/><button >Accèdez à mon espace</button>
       
     </LoginFormStyled> 
   )
 }
 const LoginFormStyled = styled.form`
-background: green;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+text-align: center;
+max-width: 500px;
+min-width: 400px;
+padding: 2rem 2rem;
+border-radius: 5px;
+font-family: 'Italiana', sans-serif;
+
+hr {
+    border: 1.5px solid #f56a2c;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: white;
+    text-transform: uppercase;
+    font-size: 28px;
+}
+
+h3 {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+
+}
+
   
 `;
 
