@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
 import { BsPersonCircle } from "react-icons/bs";
-
+import { IoChevronForward } from "react-icons/io5";
 
 export default function LoginForm() {
     const [input, setInput] = useState("")
@@ -27,13 +27,16 @@ export default function LoginForm() {
    <div className='input-container'>
    <BsPersonCircle className='icon'/>
      <input type="text" placeholder='Entrez votre prénom' onChange={handleChange} value={input}  required/>
-   </div ><button >Accèdez à mon espace</button>
+   </div ><button className='button-container'>
+    <span >Accèdez à mon espace</span>
+    <IoChevronForward className='icon-button'/>
+   </button>
       
     </LoginFormStyled> 
   )
 }
 const LoginFormStyled = styled.form`
-background: green;
+
 text-align: center;
 max-width: 500px;
 min-width: 400px;
@@ -74,8 +77,36 @@ h3 {
 
     input {
         border: none;
+        padding: 4px;
         color: #151515;
         font-size: 15px;
+        width: 80%;
+    }
+}
+
+.button-container {
+    background-color: orange;
+    color: white;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 24px;
+    margin: 18px 0;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: 0.3s ease;
+
+    .icon-button {
+        margin-left: 8px;
+    }
+
+    &:hover{
+        background-color: white;
+        color: orange;
+        border: 1px solid orange;
     }
 }
 
