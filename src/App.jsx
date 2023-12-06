@@ -2,7 +2,7 @@ import React from 'react';
 import LoginPage from './components/pages/login/LoginPage';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import OrderPage from './components/pages/order/OrderPage';
-import NotFound from './components/NotFound';
+import NotFound from './components/pages/error/NotFound';
 
 const App = () => {
 
