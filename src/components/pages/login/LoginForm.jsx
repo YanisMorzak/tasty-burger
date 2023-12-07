@@ -5,6 +5,7 @@ import { IoChevronForward } from "react-icons/io5";
 import { BsPersonCircle } from "react-icons/bs";
 import TextInput from '../../reusable-ui/TextInput';
 import PrimaryButton from '../../reusable-ui/PrimaryButton';
+import { theme } from '../../../theme';
 
 export default function LoginForm() {
     const [input, setInput] = useState("")
@@ -38,28 +39,26 @@ export default function LoginForm() {
   )
 }
 const LoginFormStyled = styled.form`
-
 text-align: center;
 max-width: 500px;
 min-width: 400px;
 padding: 2rem 2rem;
-border-radius: 5px;
 font-family: 'Italiana', sans-serif;
 
 hr {
-    border: 1.5px solid #f56a2c;
-    margin-bottom: 30px;
+    border: 1.5px solid ${theme.colors.loginLine};
+    margin-bottom: ${theme.gridUnit * 5}px;
 }
 
 h2 {
-    color: white;
+    color: ${theme.colors.white};
     text-transform: uppercase;
-    font-size: 28px;
+    font-size: ${theme.fonts.size.P4};
 }
 
 h3 {
-    color: white;
-    font-size: 20px;
+    color: ${theme.colors.white};
+    font-size: ${theme.fonts.size.P2};
     text-transform: uppercase;
 }
   

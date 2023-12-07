@@ -1,5 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components';
+import { theme } from '../../theme';
 
 export default function PrimaryButton({label, Icon}) {
   return (
@@ -12,9 +13,9 @@ export default function PrimaryButton({label, Icon}) {
 
 const PrimaryButtonStyled = styled.button`
 
-    background-color: orange;
-    color: white;
-    font-size: 15px;
+    background-color: ${theme.colors.primary};
+    color: ${theme.colors.white};
+    font-size: ${theme.fonts.size.P0};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,9 +32,9 @@ const PrimaryButtonStyled = styled.button`
     }
 
     &:hover{
-        background-color: white;
-        color: orange;
-        border: 1px solid orange;
+        background-color: ${theme.colors.white};
+        color: ${theme.colors.primary};
+        border: 1px solid ${theme.colors.primary};
     }
 
   

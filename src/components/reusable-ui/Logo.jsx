@@ -1,5 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components';
+import { theme } from '../../theme';
 
 export default function Logo() {
   return (
@@ -18,8 +19,8 @@ transform: scale(1.5);
 h1 {
     display: inline;
     text-align: center;
-    color: orange;
-    font-size: 36px;
+    color: ${theme.colors.primary};
+    font-size: ${theme.fonts.size.P5};
     letter-spacing: 2.5px;
     text-transform: uppercase;
     font-family: 'Syne', sans-serif;
@@ -27,7 +28,7 @@ h1 {
 
 img {
     height: 85px;
-    margin: 0 6px;
+    margin: 0 6px 0 2px;
 }
 
   
