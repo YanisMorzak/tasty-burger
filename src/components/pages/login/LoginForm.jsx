@@ -1,7 +1,11 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-
-
+import { styled } from 'styled-components'
+import { IoChevronForward } from "react-icons/io5";
+import { BsPersonCircle } from "react-icons/bs";
+import TextInput from '../../reusable-ui/TextInput';
+import PrimaryButton from '../../reusable-ui/PrimaryButton';
+import { theme } from '../../../theme';
 
 export default function LoginForm() {
     const [input, setInput] = useState("")
@@ -19,11 +23,47 @@ export default function LoginForm() {
         navigate(`order/${input}`)
     }
   return (
-    <form action="submit" onSubmit={handleSubmit}  >
-    <h1>Bienvenu chez nous !</h1>
-    <h3>Connectez vous</h3>
-      <input type="text" placeholder='Entrez votre prénom' onChange={handleChange} value={input}  required/><button >Accèdez à votre espace</button>
+    <LoginFormStyled action="submit" onSubmit={handleSubmit}  >
+    <h2>Bienvenu chez nous !</h2>
+    <hr />
+    <h3>Connectez-vous</h3>
+
+   <div>
+    <TextInput value={input} onChange={handleChange} placeholder={"Entrez votre prénom"} required Icon={<BsPersonCircle className='icon'/>}/>   
+
+    <PrimaryButton label={"Accèdez à mon espace"} Icon={<IoChevronForward className='icon-button'/>}/>
+
+   </div>
       
-    </form> 
+    </LoginFormStyled> 
   )
 }
+const LoginFormStyled = styled.form`
+text-align: center;
+max-width: 500px;
+min-width: 400px;
+padding: 2rem 2rem;
+font-family: 'Italiana', sans-serif;
+
+hr {
+    border: 1.5px solid ${theme.colors.loginLine};
+    margin-bottom: ${theme.gridUnit * 5}px;
+}
+
+h2 {
+    color: ${theme.colors.white};
+    text-transform: uppercase;
+    font-size: ${theme.fonts.size.P4};
+}
+
+h3 {
+    color: ${theme.colors.white};
+    font-size: ${theme.fonts.size.P2};
+    text-transform: uppercase;
+}
+  
+`;
+
+
+
+
