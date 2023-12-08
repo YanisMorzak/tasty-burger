@@ -6,7 +6,7 @@ export default function Logo() {
   return (
     <LogoStyled>
         <h1>TASTY</h1>
-        <img src="/public/img/burger-logo.png" alt="logo-tasty-burger" />
+        <img src="/img/burger-logo.png" alt="logo-tasty-burger" />
         <h1>BURGER</h1>
     </LogoStyled>
   )
