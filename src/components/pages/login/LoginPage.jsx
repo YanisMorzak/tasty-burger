@@ -6,7 +6,7 @@ import { styled } from 'styled-components';
 export default function LoginPage() {   
   return (  
  <LoginPageStyled>
-     <Logo />
+     <Logo className={"login-size"}/>
    <LoginForm />
  </LoginPageStyled>
   )
@@ -19,6 +19,10 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+
+.login-size {
+  transform: scale(1.5);
+}
 
   
 `;
