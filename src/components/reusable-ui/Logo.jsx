@@ -6,7 +6,7 @@ export default function Logo({className, onClick}) {
   return (
     <LogoStyled className={className} onClick={onClick}>
         <h1>TASTY</h1>
-        <img src="/img/burger-logo.png" alt="logo-tasty-burger" />
+        <img src="/images/burger-logo.png" alt="logo-tasty-burger" />
         <h1>BURGER</h1>
     </LogoStyled>
   )

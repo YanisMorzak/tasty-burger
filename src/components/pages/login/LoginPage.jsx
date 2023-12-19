@@ -12,7 +12,7 @@ export default function LoginPage() {
   )
 }
 const LoginPageStyled = styled.div`
-background: url("/img/F03-burger-background.jpg") fixed center/cover rgba(0,0,0,0.7);
+background: url("/images/F03-burger-background.jpg") fixed center/cover rgba(0,0,0,0.7);
 background-blend-mode: darken;
 height: 100vh;
 display: flex;
