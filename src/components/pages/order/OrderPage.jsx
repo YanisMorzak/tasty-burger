@@ -1,8 +1,8 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { styled } from 'styled-components';
-import NavBar from './NavBar';
-import Main from './Main';
+import NavBar from './NavBar/NavBar';
+import Main from './Main/Main';
 import { theme } from '../../../theme';
 
 
