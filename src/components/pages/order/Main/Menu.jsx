@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import { fakeMenu2 } from '../../../../fakeData/fakeMenu';
 import { theme } from '../../../../theme';
 import Product from './Product';
+import { formatPrice } from '../../../../utils/maths'
 
 export default function Menu() {
     const [products, setProducts] = useState(fakeMenu2)
@@ -10,7 +11,7 @@ export default function Menu() {
     <MenuStyled className="menu">
         {products.map((produit) => {
             return (
-            <Product imageSource={produit.imageSource} title={produit.title} price={produit.price}/>
+            <Product key={produit.id} imageSource={produit.imageSource} title={produit.title} leftDescription={formatPrice(produit.price)}/>
             )
         })}
         </MenuStyled>
