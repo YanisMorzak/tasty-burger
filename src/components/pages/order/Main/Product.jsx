@@ -22,11 +22,23 @@ const ProductStyled = styled.div`
         background: red;
         width: 240px;
         height: 330px;
+        display: grid;
+        grid-template-rows: 65% 1fr;
+        box-sizing: border-box;
+        padding: 20px 20px 10px 20px;
 
-        img{
-            width: 100px;
+        .image{
+            width: 100%;
+            height: auto;
             border: 1px solid green;
+            margin-top: 30px;
+            
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
+    }
 
         .info-text{
             border: 1px solid blue;
