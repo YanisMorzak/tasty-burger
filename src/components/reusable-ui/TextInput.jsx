@@ -30,7 +30,7 @@ const InputStyled = styled.div`
         border: none;
         padding: 4px;
         color: ${theme.colors.dark};
-        font-size: ${theme.fonts.size.P0};
+        font-size: ${theme.fonts.size.SM};
         width: 80%;
     }
   
