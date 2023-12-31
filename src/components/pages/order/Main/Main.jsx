@@ -1,17 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { styled } from 'styled-components';
 import { theme } from '../../../../theme';
 import Menu from './Menu';
 import Admin from './Admin/Admin';
+import OrderContext from '../../../../context/OrderContext';
 
 
 export default function Main() {
+  const {isModeAdmin, setIsModeAdmin} = useContext(OrderContext)
   return (
     <MainStyled className="main">
       {/* <div className="basket">basket</div> */}
      <div className='menu-admin'>
        <Menu />
-       <Admin />
+       {isModeAdmin && <Admin /> }
      </div>
     </MainStyled>
   )
@@ -34,6 +36,7 @@ const MainStyled = styled.div`
     .menu-admin{
       position: relative;
       overflow-y: hidden;
+      display: grid;
       border-bottom-left-radius: ${theme.borderRadius.extraRound};
       border-bottom-right-radius: ${theme.borderRadius.extraRound};
     }
