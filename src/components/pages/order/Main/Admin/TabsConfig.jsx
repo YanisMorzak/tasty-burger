@@ -18,3 +18,7 @@ export const tabsConfig = (currentTabSelected) => [
         className: currentTabSelected ==="edit" ? "is-active" : "",
     }
 ]
+
+export const getTabSelected = (tabs, currentTabSelected) => 
+    tabs.find((tab) => tab.index === currentTabSelected)
+
