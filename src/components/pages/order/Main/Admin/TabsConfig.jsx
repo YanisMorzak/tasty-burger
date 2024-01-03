@@ -6,17 +6,15 @@ export const tabsConfig = (currentTabSelected) => [
     {
         index: "add",
         label:"Ajouter un produit",
-        id: 2,
+        id: 1,
         Icon: <AiOutlinePlus />  ,
-        onClick: () => selectTab("add") ,
         className: currentTabSelected === "add" ? "is-active" : "",
     },
     {
         index: "edit",
         label:"Modifier un produit",
-        id: 3,
+        id: 2,
         Icon: <MdModeEditOutline />  ,
-        onClick: () => selectTab("edit") ,
         className: currentTabSelected ==="edit" ? "is-active" : "",
     }
 ]

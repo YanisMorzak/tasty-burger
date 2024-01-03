@@ -14,8 +14,8 @@ export default function AdminTabs({isCollapse, setIsCollapse}) {
     }
 
     const selectTab = (tabSelected) => {
-        setIsCollapse(false)
-        setCurrentTabSelected(tabSelected)
+        setIsCollapse(false) //ouvrir le panel quoiqu'il arrive
+        setCurrentTabSelected(tabSelected)//réactualise l'onglet sélectionner en fonction de la valeur de l'index
     }
 
     const tabs = tabsConfig(currentTabSelected)
