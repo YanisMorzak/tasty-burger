@@ -15,7 +15,7 @@ const PrimaryButtonStyled = styled.button`
 
     background-color: ${theme.colors.primary};
     color: ${theme.colors.white};
-    font-size: ${theme.fonts.size.P0};
+    font-size: ${theme.fonts.size.SM};
     display: flex;
     align-items: center;
     justify-content: center;

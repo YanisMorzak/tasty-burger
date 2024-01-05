@@ -6,11 +6,11 @@ import { theme } from '../../../../theme';
 import { refreshPage } from '../../../../utils/window';
 
 
-export default function NavBar({username}) {
+export default function NavBar() {
   return (
     <NavBarStyled>
       <Logo className="logo-order-page" onClick={refreshPage}/>
-      <NavbarRightSide username={username}/>
+      <NavbarRightSide />
     </NavBarStyled>
   )
 }
