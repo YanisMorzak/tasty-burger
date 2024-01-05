@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { styled } from 'styled-components';
-import { fakeMenu2 } from '../../../../fakeData/fakeMenu';
+import { fakeMenu } from '../../../../fakeData/fakeMenu';
 import { theme } from '../../../../theme';
 import Product from './Product';
 import { formatPrice } from '../../../../utils/maths'
 
 export default function Menu() {
-    const [products, setProducts] = useState(fakeMenu2)
+    const [products, setProducts] = useState(fakeMenu.LARGE)
   return (
     <MenuStyled className="menu">
         {products.map((produit) => {
