@@ -2,13 +2,14 @@ import React, { useContext, useState } from 'react'
 import { styled } from 'styled-components';
 import OrderContext from '../../../../../../context/OrderContext';
 
+
 export default function AddForm() {
 
     const EMPTY_PRODUCT = {
-        id: new Date().getTime(),
         title: "",
         imageSource: "",
         price: 0,
+        
       }
 
     const {handleAddProduct} = useContext(OrderContext)
@@ -17,7 +18,11 @@ export default function AddForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        handleAddProduct(newProduct)
+        const newProductToAdd = {
+            ...newProduct,
+            id: crypto.randomUUID()
+        }       
+        handleAddProduct(newProductToAdd)
     }
 
     const handleChange = (e) => {
