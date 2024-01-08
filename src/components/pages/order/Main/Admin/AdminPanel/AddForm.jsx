@@ -33,7 +33,9 @@ export default function AddForm() {
 
   return (
     <AddFormStyled>
-        <div className='image-preview'>image-preview</div>
+        <div className='image-preview'>
+           {newProduct.imageSource ? <img src={newProduct.imageSource} alt={newProduct.title} /> : <div>image-preview</div>}
+        </div>
         <div className='input-fields'>
             <input name="title" value={newProduct.title} type="text" placeholder='Nom' onChange={handleChange}/>
             <input name="imageSource" value={newProduct.imageSource} type="text" placeholder='Image URL' onChange={handleChange}/>
@@ -53,13 +55,25 @@ const AddFormStyled = styled.div`
   width: 70%;
 
   .image-preview{
-    background: red;
     grid-area: 1/1/4/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+
+    }
   }
   .input-fields{
-    background: blue;
     grid-area: 1/2/4/3;
     display: grid;
+
+    input{
+        padding: 10px;
+    }
   }
   .submit-button{
     background: green;
