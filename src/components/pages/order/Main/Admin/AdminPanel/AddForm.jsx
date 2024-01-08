@@ -3,40 +3,36 @@ import { styled } from 'styled-components';
 import OrderContext from '../../../../../../context/OrderContext';
 
 export default function AddForm() {
-    const {handleAddProduct} = useContext(OrderContext)
-    const [title, setTitle] = useState("")
-    const [imageSource, setImageSource] = useState("")
-    const [price, setPrice] = useState(0)
 
-    const newProduct = {
+    const EMPTY_PRODUCT = {
         id: new Date().getTime(),
-        title: title,
-        imageSource: imageSource,
-        price: price,
+        title: "",
+        imageSource: "",
+        price: 0,
       }
+
+    const {handleAddProduct} = useContext(OrderContext)
+
+    const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
 
     const handleSubmit = (e) => {
         e.preventDefault()
         handleAddProduct(newProduct)
     }
 
-    const handleTitleChange = (e) => {
-        setTitle(e.target.value)
-    }
-    const handleImageChange = (e) => {
-        setImageSource(e.target.value)
-    }
-    const handlePriceChange = (e) => {
-        setPrice(e.target.value)
+    const handleChange = (e) => {
+        const newValue = e.target.value
+        const name = e.target.name
+        setNewProduct({...newProduct, [name]: newValue})
     }
 
   return (
     <AddFormStyled>
         <div className='image-preview'>image-preview</div>
         <div className='input-fields'>
-            <input value={title} type="text" placeholder='Nom' onChange={handleTitleChange}/>
-            <input value={imageSource} type="text" placeholder='Image URL' onChange={handleImageChange}/>
-            <input value={price ? price : ""} type="text" placeholder='Prix' onChange={handlePriceChange}/>
+            <input name="title" value={newProduct.title} type="text" placeholder='Nom' onChange={handleChange}/>
+            <input name="imageSource" value={newProduct.imageSource} type="text" placeholder='Image URL' onChange={handleChange}/>
+            <input name="price" value={newProduct.price ? newProduct.price : ""} type="text" placeholder='Prix' onChange={handleChange}/>
         </div>
         <button onClick={handleSubmit} className='submit-button'>submit-button</button>
     </AddFormStyled>
