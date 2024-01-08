@@ -5,6 +5,8 @@ import Product from './Product';
 import { formatPrice } from '../../../../utils/maths'
 import OrderContext from '../../../../context/OrderContext';
 
+const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
+
 export default function Menu() {
 
   const {products} = useContext(OrderContext)
@@ -13,7 +15,7 @@ export default function Menu() {
     <MenuStyled className="menu">
         {products.map((produit) => {
             return (
-            <Product key={produit.id} imageSource={produit.imageSource} title={produit.title} leftDescription={formatPrice(produit.price)}/>
+            <Product key={produit.id} imageSource={produit.imageSource ? produit.imageSource : IMAGE_BY_DEFAULT} title={produit.title} leftDescription={formatPrice(produit.price)}/>
             )
         })}
         </MenuStyled>
