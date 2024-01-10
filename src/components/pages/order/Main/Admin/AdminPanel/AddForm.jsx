@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { styled } from 'styled-components';
 import OrderContext from '../../../../../../context/OrderContext';
+import { FiCheck } from 'react-icons/fi';
 
 
 export default function AddForm() {
@@ -15,6 +16,7 @@ export default function AddForm() {
     const {handleAddProduct} = useContext(OrderContext)
 
     const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
+    const [isSubmitted, setisSubmitted] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -24,6 +26,12 @@ export default function AddForm() {
         }       
         handleAddProduct(newProductToAdd)
         setNewProduct(EMPTY_PRODUCT)
+
+        setisSubmitted(true)
+        setTimeout(() => {
+            setisSubmitted(false)
+        }, 2000)
+        
     }
 
     const handleChange = (e) => {
@@ -42,7 +50,15 @@ export default function AddForm() {
             <input name="imageSource" value={newProduct.imageSource} type="text" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" onChange={handleChange}/>
             <input name="price" value={newProduct.price ? newProduct.price : ""} type="text" placeholder='Prix' onChange={handleChange}/>
         </div>
-        <button onClick={handleSubmit} className='submit-button'>submit-button</button>
+        <div className='submit-button'>
+            <button onClick={handleSubmit} >submit-button
+            </button>
+            {isSubmitted && 
+            <div className='submit-message'>
+                <FiCheck />
+                <span>Ajouté avec succès !</span>
+            </div>}
+        </div>
     </AddFormStyled>
   )
 }
@@ -79,6 +95,12 @@ const AddFormStyled = styled.div`
   .submit-button{
     background: green;
     grid-area: 4/2/5/3;
-    width: 50%;
+    display: flex;
+
+    button{
+        width: 50%;
+        margin-right: 10px;
+        cursor: pointer;
+    }
   }
 `;
