@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { styled } from 'styled-components';
 import { theme } from '../../../../theme';
 import PrimaryButton from '../../../reusable-ui/PrimaryButton'
 import { TiDelete } from 'react-icons/ti';
+import OrderContext from '../../../../context/OrderContext';
 
 export default function Product({imageSource, title, leftDescription}) {
+    const {isModeAdmin} = useContext(OrderContext)
+
   return (
     <ProductStyled className='produit'>
-        <button className='delete-button' aria-label='delete-button'>
+       { isModeAdmin && <button className='delete-button' aria-label='delete-button'>
             <TiDelete className='icon'/>
-        </button>
+        </button>}
         <div className="image">
             <img src={imageSource} alt={title} />
         </div>
