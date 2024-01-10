@@ -9,13 +9,14 @@ const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
 export default function Menu() {
 
-  const {products} = useContext(OrderContext)
+  const {products, handleDelete} = useContext(OrderContext)
 
   return (
     <MenuStyled className="menu">
         {products.map((produit) => {
             return (
-            <Product key={produit.id} imageSource={produit.imageSource ? produit.imageSource : IMAGE_BY_DEFAULT} title={produit.title} leftDescription={formatPrice(produit.price)}/>
+            <Product key={produit.id} imageSource={produit.imageSource ? produit.imageSource : IMAGE_BY_DEFAULT} title={produit.title} leftDescription={formatPrice(produit.price)} 
+            onDelete={() => handleDelete(produit.id)}/>
             )
         })}
         </MenuStyled>
