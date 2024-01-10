@@ -1,22 +1,21 @@
 import React, { useContext } from 'react'
 import { styled } from 'styled-components';
-import { theme } from '../../../../theme';
-import Product from './Product';
-import { formatPrice } from '../../../../utils/maths'
-import OrderContext from '../../../../context/OrderContext';
+import { theme } from '../../../../../theme';
+import Product from '../Product';
+import { formatPrice } from '../../../../../utils/maths'
+import OrderContext from '../../../../../context/OrderContext';
+import EmptyMenuAdmin from './EmptyMenuAdmin';
+import EmptyMenuClient from './EmptyMenuClient';
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
 export default function Menu() {
 
-  const {products, handleDelete, resetProducts} = useContext(OrderContext)
+  const {products, handleDelete, resetProducts, isModeAdmin} = useContext(OrderContext)
 
   if(products.length === 0)
     return(
-    <div>
-      <span>Pas de produits</span>
-      <button onClick={resetProducts}>générer de nouveaux produits</button>
-    </div>
+    isModeAdmin ? <EmptyMenuAdmin resetProducts={resetProducts}/> : <EmptyMenuClient />
     )
 
   return (
