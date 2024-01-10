@@ -11,7 +11,7 @@ import { fakeMenu } from '../../../fakeData/fakeMenu';
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false);
     const [currentTabSelected, setCurrentTabSelected] = useState("add");
-    const [products, setProducts] = useState(fakeMenu.LARGE)
+    const [products, setProducts] = useState(fakeMenu.SMALL)
 
     const handleAddProduct = (newProduct) => {
       // copie du state
@@ -32,6 +32,10 @@ export default function OrderPage() {
       setProducts(productsUpdated)
     }
 
+    const resetProducts = () => {
+      setProducts(fakeMenu.SMALL)
+    }
+
     const orderContextValue = {
       isModeAdmin,
       setIsModeAdmin,
@@ -43,6 +47,7 @@ export default function OrderPage() {
       setProducts,
       handleAddProduct,
       handleDelete,
+      resetProducts,
     }
 
 
