@@ -29,7 +29,7 @@ export default function LoginForm() {
     <h3>Connectez-vous</h3>
 
    <div>
-    <TextInput value={input} onChange={handleChange} placeholder={"Entrez votre prénom"} required Icon={<BsPersonCircle className='input-login'/>}/>   
+    <TextInput value={input} onChange={handleChange} placeholder={"Entrez votre prénom"} required Icon={<BsPersonCircle className='input-login'/>} version="normal"/>   
 
     <PrimaryButton label={"Accèdez à mon espace"} Icon={<IoChevronForward />}/>
 
@@ -63,7 +63,7 @@ h3 {
     margin-bottom: 30px;
 }
 .input-login{
-  margin: 20px 0 20px 25px;
+  margin-left: 15px;
 }
   
 `;

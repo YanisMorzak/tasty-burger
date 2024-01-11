@@ -1,10 +1,10 @@
 import React from 'react'
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 import { theme } from '../../theme';
 
-export default function TextInput({value, onChange, Icon, className, ...restProps}) {
+export default function TextInput({value, onChange, Icon, className, version, ...restProps}) {
   return (
-    <InputStyled className={className}>
+    <InputStyled className={className} version={version}>
       <div className='icon'>{Icon && Icon}</div>
       <input type="text" onChange={onChange} value={value} {...restProps}  />
     </InputStyled >
@@ -12,8 +12,6 @@ export default function TextInput({value, onChange, Icon, className, ...restProp
 }
 
 const InputStyled = styled.div`
-
-    background-color: ${theme.colors.white};
     border-radius: ${theme.borderRadius.round};
     display: flex;
     align-items: center;
@@ -32,7 +30,26 @@ const InputStyled = styled.div`
         padding: 4px;
         color: ${theme.colors.dark};
         font-size: ${theme.fonts.size.SM};
-        width: 80%;
+        width: 90%;
     }
-  
+
+    ${(props) => props.version === "normal" && extraNormalStyle};
+    ${(props) => props.version === "minimalist" && extraMinimalistStyle};
 `;
+
+const extraNormalStyle = css`
+  background:${theme.colors.white};
+  padding: 18px 28px;
+`
+const extraMinimalistStyle = css`
+  background: ${theme.colors.background_white};
+  padding: 8px 16px;
+  
+  input{
+    background: ${theme.colors.background_white};
+
+    &:focus{
+      outline: 0;
+    }
+  }
+`

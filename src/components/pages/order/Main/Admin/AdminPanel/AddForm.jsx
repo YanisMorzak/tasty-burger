@@ -3,6 +3,10 @@ import { styled } from 'styled-components';
 import OrderContext from '../../../../../../context/OrderContext';
 import { FiCheck } from 'react-icons/fi';
 import { theme } from '../../../../../../theme';
+import TextInput from '../../../../../reusable-ui/TextInput';
+import { BsFillCameraFill } from 'react-icons/bs';
+import { MdOutlineEuro } from 'react-icons/md';
+import { FaHamburger } from 'react-icons/fa';
 
 
 export default function AddForm() {
@@ -47,9 +51,9 @@ export default function AddForm() {
            {newProduct.imageSource ? <img src={newProduct.imageSource} alt={newProduct.title} /> : <div className='empty-image'>image-preview</div>}
         </div>
         <div className='input-fields'>
-            <input name="title" value={newProduct.title} type="text" placeholder='Nom du produit (ex: Super Burger)' onChange={handleChange}/>
-            <input name="imageSource" value={newProduct.imageSource} type="text" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" onChange={handleChange}/>
-            <input name="price" value={newProduct.price ? newProduct.price : ""} type="text" placeholder='Prix' onChange={handleChange}/>
+            <TextInput name="title" value={newProduct.title} type="text" placeholder='Nom du produit (ex: Super Burger)' onChange={handleChange} Icon={ <FaHamburger />} version="minimalist"/>
+            <TextInput name="imageSource" value={newProduct.imageSource} type="text" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" onChange={handleChange} Icon={<BsFillCameraFill/>} version="minimalist"/>
+            <TextInput name="price" value={newProduct.price ? newProduct.price : ""} type="text" placeholder='Prix' onChange={handleChange} Icon={<MdOutlineEuro />} version="minimalist"/>
         </div>
         <div className='submit-button'>
             <button onClick={handleSubmit} >submit-button
@@ -98,10 +102,7 @@ const AddFormStyled = styled.div`
   .input-fields{
     grid-area: 1/2/4/3;
     display: grid;
-
-    input{
-        padding: 10px;
-    }
+    grid-row-gap: 8px;
   }
   .submit-button{
     background: green;
