@@ -6,7 +6,7 @@ export default function PrimaryButton({label, Icon, className}) {
   return (
     <PrimaryButtonStyled className={className}>
     <span >{label}</span>
-    {Icon && Icon}
+    <div className='icon'>{Icon && Icon}</div>
    </PrimaryButtonStyled>
   )
 }
@@ -27,8 +27,13 @@ const PrimaryButtonStyled = styled.button`
     cursor: pointer;
     transition: 0.3s ease;
 
-    .icon-button {
-        margin-left: 8px;
+    .icon{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: ${theme.fonts.size.P1};
+      margin-left: 8px;
+      
     }
 
     &:hover{

@@ -29,9 +29,9 @@ export default function LoginForm() {
     <h3>Connectez-vous</h3>
 
    <div>
-    <TextInput value={input} onChange={handleChange} placeholder={"Entrez votre prénom"} required Icon={<BsPersonCircle className='icon'/>}/>   
+    <TextInput value={input} onChange={handleChange} placeholder={"Entrez votre prénom"} required Icon={<BsPersonCircle className='input-login'/>}/>   
 
-    <PrimaryButton label={"Accèdez à mon espace"} Icon={<IoChevronForward className='icon-button'/>}/>
+    <PrimaryButton label={"Accèdez à mon espace"} Icon={<IoChevronForward />}/>
 
    </div>
       
@@ -60,6 +60,10 @@ h3 {
     color: ${theme.colors.white};
     font-size: ${theme.fonts.size.P2};
     text-transform: uppercase;
+    margin-bottom: 30px;
+}
+.input-login{
+  margin: 20px 0 20px 25px;
 }
   
 `;
