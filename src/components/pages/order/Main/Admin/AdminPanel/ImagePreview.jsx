@@ -4,7 +4,7 @@ import { theme } from '../../../../../../theme';
 
 export default function ImagePreview({newProduct}) {
   return (
-    <ImagePreviewStyled className='image-preview'>
+    <ImagePreviewStyled >
     {newProduct.imageSource ? <img src={newProduct.imageSource} alt={newProduct.title} /> : <div className='empty-image'>image-preview</div>}
  </ImagePreviewStyled>
   )
