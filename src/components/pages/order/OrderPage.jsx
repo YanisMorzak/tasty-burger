@@ -5,13 +5,15 @@ import Main from './Main/Main';
 import { theme } from '../../../theme';
 import OrderContext from '../../../context/OrderContext';
 import { fakeMenu } from '../../../fakeData/fakeMenu';
+import { EMPTY_PRODUCT } from './Main/Admin/AdminPanel/AddForm';
 
 
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false);
     const [currentTabSelected, setCurrentTabSelected] = useState("add");
-    const [products, setProducts] = useState(fakeMenu.SMALL)
+    const [products, setProducts] = useState(fakeMenu.LARGE)
+    const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
 
     const handleAddProduct = (newProduct) => {
       // copie du state
@@ -33,7 +35,7 @@ export default function OrderPage() {
     }
 
     const resetProducts = () => {
-      setProducts(fakeMenu.SMALL)
+      setProducts(fakeMenu.LARGE)
     }
 
     const orderContextValue = {
@@ -48,6 +50,8 @@ export default function OrderPage() {
       handleAddProduct,
       handleDelete,
       resetProducts,
+      newProduct,
+      setNewProduct
     }
 
 

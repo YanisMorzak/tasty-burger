@@ -9,19 +9,17 @@ import { MdOutlineEuro } from 'react-icons/md';
 import { FaHamburger } from 'react-icons/fa';
 import Button from '../../../../../reusable-ui/Button';
 
+export const EMPTY_PRODUCT = {
+  title: "",
+  imageSource: "",
+  price: 0,
+  
+}
 
 export default function AddForm() {
 
-    const EMPTY_PRODUCT = {
-        title: "",
-        imageSource: "",
-        price: 0,
-        
-      }
+    const {handleAddProduct, newProduct, setNewProduct} = useContext(OrderContext)
 
-    const {handleAddProduct} = useContext(OrderContext)
-
-    const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
     const [isSubmitted, setisSubmitted] = useState(false)
 
     const handleSubmit = (e) => {
