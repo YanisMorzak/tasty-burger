@@ -2,12 +2,10 @@ import React, { useContext, useState } from 'react'
 import { styled } from 'styled-components';
 import OrderContext from '../../../../../../context/OrderContext';
 import TextInput from '../../../../../reusable-ui/TextInput';
-import { BsFillCameraFill } from 'react-icons/bs';
-import { MdOutlineEuro } from 'react-icons/md';
-import { FaHamburger } from 'react-icons/fa';
 import Button from '../../../../../reusable-ui/Button';
 import ImagePreview from './ImagePreview';
 import SubmitMessage from './SubmitMessage';
+import { getInputTextsConfig } from './inputTextConfig';
 
 export const EMPTY_PRODUCT = {
   title: "",
@@ -44,13 +42,24 @@ export default function AddForm() {
         setNewProduct({...newProduct, [name]: newValue})
     }
 
+    const inputTexts = getInputTextsConfig(newProduct)
+   
   return (
     <AddFormStyled onSubmit={handleSubmit}>
        <ImagePreview newProduct={newProduct}/>
         <div className='input-fields'>
-            <TextInput name="title" value={newProduct.title} type="text" placeholder='Nom du produit (ex: Super Burger)' onChange={handleChange} Icon={ <FaHamburger />} version="minimalist"/>
-            <TextInput name="imageSource" value={newProduct.imageSource} type="text" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" onChange={handleChange} Icon={<BsFillCameraFill/>} version="minimalist"/>
-            <TextInput name="price" value={newProduct.price ? newProduct.price : ""} type="text" placeholder='Prix' onChange={handleChange} Icon={<MdOutlineEuro />} version="minimalist"/>
+          {inputTexts.map((input) => {
+            return <TextInput 
+            key={input.id}
+            name={input.name} 
+            value={input.value} 
+            placeholder={input.placeholder}
+            onChange={handleChange} 
+            Icon={input.Icon} 
+            version={input.version}
+            />
+          })}
+           
         </div>
         <div className='submit-button'>
             <Button label={"Ajouter un nouveau produit au menu"} version="succes"/>
