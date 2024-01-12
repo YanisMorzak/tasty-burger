@@ -60,7 +60,7 @@ export default function AddForm() {
             <Button label={"Ajouter un nouveau produit au menu"} version="succes"/>
             {isSubmitted && 
             <div className='submit-message'>
-                <FiCheck />
+                <FiCheck className='icon'/>
                 <span>Ajouté avec succès !</span>
             </div>}
         </div>
@@ -107,10 +107,26 @@ const AddFormStyled = styled.form`
   .submit-button{
     grid-area: 4/2/5/3;
     display: flex;
-/* 
-    button{
-        width: 50%;
-        margin-right: 10px;
-    } */
+    align-items: center;
+
+    .submit-message{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: ${theme.colors.success};
+
+      .icon{
+        margin-left: 10px;
+        border: 1px solid ${theme.colors.success};
+        border-radius: 50px;
+        width: 1.3em;
+        height: 1.3em;
+      }
+
+      span{
+        margin-left: 10px;
+      }
+    }
+
   }
 `;
