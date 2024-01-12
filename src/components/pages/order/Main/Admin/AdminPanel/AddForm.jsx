@@ -8,6 +8,7 @@ import { BsFillCameraFill } from 'react-icons/bs';
 import { MdOutlineEuro } from 'react-icons/md';
 import { FaHamburger } from 'react-icons/fa';
 import Button from '../../../../../reusable-ui/Button';
+import ImagePreview from './ImagePreview';
 
 export const EMPTY_PRODUCT = {
   title: "",
@@ -46,9 +47,7 @@ export default function AddForm() {
 
   return (
     <AddFormStyled onSubmit={handleSubmit}>
-        <div className='image-preview'>
-           {newProduct.imageSource ? <img src={newProduct.imageSource} alt={newProduct.title} /> : <div className='empty-image'>image-preview</div>}
-        </div>
+       <ImagePreview newProduct={newProduct}/>
         <div className='input-fields'>
             <TextInput name="title" value={newProduct.title} type="text" placeholder='Nom du produit (ex: Super Burger)' onChange={handleChange} Icon={ <FaHamburger />} version="minimalist"/>
             <TextInput name="imageSource" value={newProduct.imageSource} type="text" placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)" onChange={handleChange} Icon={<BsFillCameraFill/>} version="minimalist"/>
@@ -75,28 +74,6 @@ const AddFormStyled = styled.form`
   height: 100%;
   width: 70%;
 
-  .image-preview{
-    grid-area: 1/1/4/2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    img{
-        height: 100%;
-        width: 100%;
-        object-fit: contain;
-
-    }
-    .empty-image{
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid ${theme.colors.greyLight};
-        border-radius: ${theme.borderRadius.round};
-    }
-  }
   .input-fields{
     grid-area: 1/2/4/3;
     display: grid;
