@@ -7,6 +7,7 @@ import TextInput from '../../../../../reusable-ui/TextInput';
 import { BsFillCameraFill } from 'react-icons/bs';
 import { MdOutlineEuro } from 'react-icons/md';
 import { FaHamburger } from 'react-icons/fa';
+import Button from '../../../../../reusable-ui/Button';
 
 
 export default function AddForm() {
@@ -46,7 +47,7 @@ export default function AddForm() {
     }
 
   return (
-    <AddFormStyled>
+    <AddFormStyled onSubmit={handleSubmit}>
         <div className='image-preview'>
            {newProduct.imageSource ? <img src={newProduct.imageSource} alt={newProduct.title} /> : <div className='empty-image'>image-preview</div>}
         </div>
@@ -56,8 +57,7 @@ export default function AddForm() {
             <TextInput name="price" value={newProduct.price ? newProduct.price : ""} type="text" placeholder='Prix' onChange={handleChange} Icon={<MdOutlineEuro />} version="minimalist"/>
         </div>
         <div className='submit-button'>
-            <button onClick={handleSubmit} >submit-button
-            </button>
+            <Button label={"Ajouter un nouveau produit au menu"} version="succes"/>
             {isSubmitted && 
             <div className='submit-message'>
                 <FiCheck />
@@ -68,7 +68,7 @@ export default function AddForm() {
   )
 }
 
-const AddFormStyled = styled.div`
+const AddFormStyled = styled.form`
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-template-rows: repeat(4, 1fr);
@@ -105,14 +105,12 @@ const AddFormStyled = styled.div`
     grid-row-gap: 8px;
   }
   .submit-button{
-    background: green;
     grid-area: 4/2/5/3;
     display: flex;
-
+/* 
     button{
         width: 50%;
         margin-right: 10px;
-        cursor: pointer;
-    }
+    } */
   }
 `;

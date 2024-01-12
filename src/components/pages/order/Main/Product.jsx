@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { styled } from 'styled-components';
 import { theme } from '../../../../theme';
-import PrimaryButton from '../../../reusable-ui/PrimaryButton'
+import Button from '../../../reusable-ui/Button'
 import { TiDelete } from 'react-icons/ti';
 import OrderContext from '../../../../context/OrderContext';
 
@@ -21,7 +21,7 @@ export default function Product({imageSource, title, leftDescription, onDelete})
             <div className='description'>
                 <div className='left-description'>{leftDescription}</div>
                 <div className='right-description'> 
-                <PrimaryButton className="primary-button" label={"Ajouter"} /></div>
+                <Button className="primary-button" label={"Ajouter"} version="normal" /></div>
         </div>
         </div>               
     </ProductStyled>
