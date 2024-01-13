@@ -51,9 +51,8 @@ const extraSuccesStyle = css`
   background: ${theme.colors.success};
   border: 1px solid ${theme.colors.success};
   border-radius: ${theme.borderRadius.round};
-  width: 50%;
   margin-right: 10px;
-  height: 40px;
+  height: 100%;
   padding: 0 1.5em;
   &:hover{
     color: ${theme.colors.success};

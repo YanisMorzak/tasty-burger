@@ -78,6 +78,7 @@ const AddFormStyled = styled.form`
   grid-row-gap: 8px;
   height: 100%;
   width: 70%;
+  margin-left: 20px;
 
   .input-fields{
     grid-area: 1/2/4/3;
