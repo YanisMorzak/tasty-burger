@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { styled } from 'styled-components';
 import { theme } from '../../../../theme';
-import PrimaryButton from '../../../reusable-ui/PrimaryButton'
+import Button from '../../../reusable-ui/Button'
+import { TiDelete } from 'react-icons/ti';
+import OrderContext from '../../../../context/OrderContext';
 
-export default function Product({imageSource, title, leftDescription}) {
+export default function Product({imageSource, title, leftDescription, onDelete}) {
+    const {isModeAdmin} = useContext(OrderContext)
+
   return (
     <ProductStyled className='produit'>
+       { isModeAdmin && <button className='delete-button' aria-label='delete-button' onClick={onDelete}>
+            <TiDelete className='icon'/>
+        </button>}
         <div className="image">
             <img src={imageSource} alt={title} />
         </div>
@@ -14,7 +21,7 @@ export default function Product({imageSource, title, leftDescription}) {
             <div className='description'>
                 <div className='left-description'>{leftDescription}</div>
                 <div className='right-description'> 
-                <PrimaryButton className="primary-button" label={"Ajouter"} /></div>
+                <Button className="primary-button" label={"Ajouter"} version="normal" /></div>
         </div>
         </div>               
     </ProductStyled>
@@ -31,6 +38,34 @@ const ProductStyled = styled.div`
         padding: 20px 20px 10px 20px;
         box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
         border-radius: ${theme.borderRadius.extraRound};
+        position: relative;
+
+        .delete-button{
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            color: ${theme.colors.primary};
+            border: none;
+            border-radius: 90px;
+            background: none;
+            cursor: pointer;
+
+            .icon{
+                height: 100%;
+                width: 100%;
+            }
+
+            :hover{
+                color: ${theme.colors.red};
+                background: none;                
+            }
+            :active{
+                color: ${theme.colors.primary};
+            }
+
+        }
 
         .image{
             width: 100%;

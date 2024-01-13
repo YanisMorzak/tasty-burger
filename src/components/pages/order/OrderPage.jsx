@@ -4,12 +4,39 @@ import NavBar from './NavBar/NavBar';
 import Main from './Main/Main';
 import { theme } from '../../../theme';
 import OrderContext from '../../../context/OrderContext';
+import { fakeMenu } from '../../../fakeData/fakeMenu';
+import { EMPTY_PRODUCT } from './Main/Admin/AdminPanel/AddForm';
 
 
 
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false);
-    const [currentTabSelected, setCurrentTabSelected] = useState("add")
+    const [currentTabSelected, setCurrentTabSelected] = useState("add");
+    const [products, setProducts] = useState(fakeMenu.LARGE)
+    const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
+
+    const handleAddProduct = (newProduct) => {
+      // copie du state
+      const copyProducts = [...products]
+
+      // manipulation de la copie
+      const productsUpdated = [newProduct,...copyProducts]
+
+      // update du state
+      setProducts(productsUpdated)
+    }
+
+    const handleDelete = (idOfProductDeleted) => {
+      const productsCopy = [...products]
+  
+      const productsUpdated = productsCopy.filter((product) => product.id !== idOfProductDeleted)
+  
+      setProducts(productsUpdated)
+    }
+
+    const resetProducts = () => {
+      setProducts(fakeMenu.LARGE)
+    }
 
     const orderContextValue = {
       isModeAdmin,
@@ -17,7 +44,16 @@ export default function OrderPage() {
 
       currentTabSelected,
       setCurrentTabSelected,
+
+      products,
+      setProducts,
+      handleAddProduct,
+      handleDelete,
+      resetProducts,
+      newProduct,
+      setNewProduct
     }
+
 
   return (
     <OrderContext.Provider value={orderContextValue}>
