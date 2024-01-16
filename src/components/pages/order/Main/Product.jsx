@@ -5,11 +5,12 @@ import Button from '../../../reusable-ui/Button'
 import { TiDelete } from 'react-icons/ti';
 import OrderContext from '../../../../context/OrderContext';
 
-export default function Product({imageSource, title, leftDescription, onDelete}) {
+
+export default function Product({imageSource, title, leftDescription, onDelete, onClick}) {
     const {isModeAdmin} = useContext(OrderContext)
 
   return (
-    <ProductStyled className='produit'>
+    <ProductStyled className='produit' onClick={onClick}>
        { isModeAdmin && <button className='delete-button' aria-label='delete-button' onClick={onDelete}>
             <TiDelete className='icon'/>
         </button>}

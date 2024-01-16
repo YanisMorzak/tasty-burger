@@ -5,7 +5,8 @@ import Main from './Main/Main';
 import { theme } from '../../../theme';
 import OrderContext from '../../../context/OrderContext';
 import { fakeMenu } from '../../../fakeData/fakeMenu';
-import { EMPTY_PRODUCT } from './Main/Admin/AdminPanel/AddForm';
+import { EMPTY_PRODUCT } from '../../../enums/product';
+
 
 
 
@@ -14,6 +15,8 @@ export default function OrderPage() {
     const [currentTabSelected, setCurrentTabSelected] = useState("add");
     const [products, setProducts] = useState(fakeMenu.LARGE)
     const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
+    const [isCollapse, setIsCollapse] = useState(false)
+    const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT)
 
     const handleAddProduct = (newProduct) => {
       // copie du state
@@ -45,13 +48,19 @@ export default function OrderPage() {
       currentTabSelected,
       setCurrentTabSelected,
 
+      isCollapse,
+      setIsCollapse,
+
       products,
       setProducts,
       handleAddProduct,
       handleDelete,
       resetProducts,
       newProduct,
-      setNewProduct
+      setNewProduct,
+
+      productSelected, 
+      setproductSelected,
     }
 
 
