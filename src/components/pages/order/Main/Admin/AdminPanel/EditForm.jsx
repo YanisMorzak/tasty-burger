@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import HintMessage from './HintMessage'
 import OrderContext from '../../../../../../context/OrderContext'
 import { styled } from 'styled-components'
 import ImagePreview from './ImagePreview'
@@ -7,12 +6,16 @@ import TextInput from '../../../../../reusable-ui/TextInput'
 import { getInputTextsConfig } from './inputTextConfig'
 
 export default function EditForm() {
-  const {productSelected, setproductSelected} = useContext(OrderContext)
+  const {productSelected, setproductSelected, handleEdit} = useContext(OrderContext)
 
   const handleChange = (e) => {
     const newValue = e.target.value
     const name = e.target.name
-    setproductSelected({...productSelected, [name]: newValue})
+    const productBeingUpdated = {...productSelected, [name]: newValue}
+    // setproductSelected({...productSelected, [name]: newValue}) 
+
+    setproductSelected(productBeingUpdated) //update le form
+    handleEdit(productBeingUpdated) // update le menu
 }
 
 const inputTexts = getInputTextsConfig(productSelected)

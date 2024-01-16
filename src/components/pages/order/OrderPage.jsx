@@ -8,8 +8,6 @@ import { fakeMenu } from '../../../fakeData/fakeMenu';
 import { EMPTY_PRODUCT } from '../../../enums/product';
 
 
-
-
 export default function OrderPage() {
     const [isModeAdmin, setIsModeAdmin] = useState(false);
     const [currentTabSelected, setCurrentTabSelected] = useState("add");
@@ -20,7 +18,7 @@ export default function OrderPage() {
 
     const handleAddProduct = (newProduct) => {
       // copie du state
-      const copyProducts = [...products]
+      const copyProducts = JSON.parse(JSON.stringify(products))
 
       // manipulation de la copie
       const productsUpdated = [newProduct,...copyProducts]
@@ -30,11 +28,24 @@ export default function OrderPage() {
     }
 
     const handleDelete = (idOfProductDeleted) => {
-      const productsCopy = [...products]
+      const productsCopy = JSON.parse(JSON.stringify(products))
   
       const productsUpdated = productsCopy.filter((product) => product.id !== idOfProductDeleted)
   
       setProducts(productsUpdated)
+    }
+
+    const handleEdit = (productBeingUpdated) => {
+      // Copie du state (deep clone)
+      const copyProducts = JSON.parse(JSON.stringify(products))
+      
+      //Manipulation de la copie du state
+      const indexOfProductToEdit = products.findIndex((product) => product.id === productBeingUpdated.id)
+
+      copyProducts[indexOfProductToEdit] = productBeingUpdated
+
+      //Update du state
+      setProducts(copyProducts)
     }
 
     const resetProducts = () => {
@@ -55,6 +66,7 @@ export default function OrderPage() {
       setProducts,
       handleAddProduct,
       handleDelete,
+      handleEdit,
       resetProducts,
       newProduct,
       setNewProduct,
