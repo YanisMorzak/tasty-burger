@@ -6,6 +6,7 @@ import { theme } from '../../../theme';
 import OrderContext from '../../../context/OrderContext';
 import { fakeMenu } from '../../../fakeData/fakeMenu';
 import { EMPTY_PRODUCT } from '../../../enums/product';
+import { deepClone } from '../../../utils/array';
 
 
 export default function OrderPage() {
@@ -18,7 +19,7 @@ export default function OrderPage() {
 
     const handleAddProduct = (newProduct) => {
       // copie du state
-      const copyProducts = JSON.parse(JSON.stringify(products))
+      const copyProducts = deepClone(products)
 
       // manipulation de la copie
       const productsUpdated = [newProduct,...copyProducts]
@@ -28,7 +29,7 @@ export default function OrderPage() {
     }
 
     const handleDelete = (idOfProductDeleted) => {
-      const productsCopy = JSON.parse(JSON.stringify(products))
+      const productsCopy = deepClone(products)
   
       const productsUpdated = productsCopy.filter((product) => product.id !== idOfProductDeleted)
   
@@ -37,7 +38,7 @@ export default function OrderPage() {
 
     const handleEdit = (productBeingUpdated) => {
       // Copie du state (deep clone)
-      const copyProducts = JSON.parse(JSON.stringify(products))
+      const copyProducts = deepClone(products)
       
       //Manipulation de la copie du state
       const indexOfProductToEdit = products.findIndex((product) => product.id === productBeingUpdated.id)
