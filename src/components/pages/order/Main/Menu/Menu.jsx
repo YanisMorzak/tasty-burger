@@ -30,7 +30,8 @@ export default function Menu() {
         {products.map((produit) => {
             return (
             <Product key={produit.id} imageSource={produit.imageSource ? produit.imageSource : IMAGE_BY_DEFAULT} title={produit.title} leftDescription={formatPrice(produit.price)} 
-            onDelete={() => handleDelete(produit.id)} onClick={() => handleClick(produit.id)}/>
+            onDelete={() => handleDelete(produit.id)} onClick={() => handleClick(produit.id)}
+            isHoverable={isModeAdmin}/>
             )
         })}
         </MenuStyled>
