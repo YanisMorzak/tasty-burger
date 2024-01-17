@@ -17,10 +17,11 @@ export default function Menu() {
     return(
     isModeAdmin ? <EmptyMenuAdmin resetProducts={resetProducts}/> : <EmptyMenuClient />
     )
-
+    
+    //gestionnaire d'évènement (event handlers)
     const handleClick = (idProduct) => {
-      const productSelected = products.find((product) => product.id === idProduct)
-      setproductSelected(productSelected);
+      const productClickedOn = products.find((product) => product.id === idProduct)
+      setproductSelected(productClickedOn);
 
     }
 

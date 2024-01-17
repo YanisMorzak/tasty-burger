@@ -8,6 +8,7 @@ import { getInputTextsConfig } from './inputTextConfig'
 export default function EditForm() {
   const {productSelected, setproductSelected, handleEdit} = useContext(OrderContext)
 
+  //gestionnaire d'évènement (event handlers)
   const handleChange = (e) => {
     const newValue = e.target.value
     const name = e.target.name

@@ -17,6 +17,7 @@ export default function OrderPage() {
     const [isCollapse, setIsCollapse] = useState(false)
     const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT)
 
+    //gestionnaire de state (state handlers)
     const handleAddProduct = (newProduct) => {
       // copie du state
       const copyProducts = deepClone(products)
