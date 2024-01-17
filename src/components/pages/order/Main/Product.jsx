@@ -140,6 +140,9 @@ ${(props) => props.isHoverable && hoverableStyle}
 
 const hoverableStyle = css`
 &:hover{
+    box-sizing: border-box;
+    width: 240px;
+    height: 330px;
     transform: scale(1.04);
     transition: 0.4s;
     box-shadow: ${theme.shadows.orange};
