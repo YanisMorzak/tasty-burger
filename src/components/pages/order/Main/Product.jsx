@@ -10,8 +10,8 @@ export default function Product({imageSource, title, leftDescription, onDelete, 
     const {isModeAdmin} = useContext(OrderContext)
 
   return (
-    <ProductStyled className='produit' onClick={onClick} isHoverable={isHoverable}>
-    <div className='card' style={isSelected ? {background: "orange"} : {}}>
+    <ProductStyled className='produit' onClick={onClick} isHoverable={isHoverable} isSelected={isSelected}>
+    <div className='card'>
            { isModeAdmin && <button className='delete-button' aria-label='delete-button' onClick={onDelete}>
                 <TiDelete className='icon'/>
             </button>}
@@ -21,9 +21,9 @@ export default function Product({imageSource, title, leftDescription, onDelete, 
             <div className='info-text'>
                 <div className='title'>{title}</div>
                 <div className='description'>
-                    <div className='left-description' style={isSelected ? {color: "white"} : {}}>{leftDescription}</div>
+                    <div className='left-description'>{leftDescription}</div>
                     <div className='right-description'> 
-                    <Button className="primary-button" label={"Ajouter"} version="normal" style={isSelected ? {background: "white", color:"orange", border:"1px solid orange"} : {}}/></div>
+                    <Button className="primary-button" label={"Ajouter"} version="normal" /></div>
             </div>
             </div>   
     </div>            
@@ -32,7 +32,7 @@ export default function Product({imageSource, title, leftDescription, onDelete, 
 }
 
 const ProductStyled = styled.div`
-${(props) => props.isHoverable && hoverableStyle}
+
 .card{        
     background: ${theme.colors.white};
     width: 240px;
@@ -62,11 +62,11 @@ ${(props) => props.isHoverable && hoverableStyle}
                 width: 100%;
             }
 
-            :hover{
+            &:hover{
                 color: ${theme.colors.red};
                 background: none;                
             }
-            :active{
+            &:active{
                 color: ${theme.colors.primary};
             }
 
@@ -135,7 +135,10 @@ ${(props) => props.isHoverable && hoverableStyle}
         }
                 }
             }
-        }}
+        }
+        ${(props) => props.isHoverable && hoverableStyle}
+        ${(props) => props.isSelected && selectedStyle}        
+        }
 `;
 
 const hoverableStyle = css`
@@ -149,3 +152,26 @@ const hoverableStyle = css`
     border-radius: ${theme.borderRadius.extraRound};
     cursor: pointer;
     }`
+
+const selectedStyle = css`
+background: ${theme.colors.primary};
+
+.delete-button{
+    color: ${theme.colors.white};
+
+    &:active{
+        color: ${theme.colors.white};
+    }
+}
+.info-text{
+    .description{   
+        .left-description{
+        color: ${theme.colors.white};
+        }
+    }
+}
+.primary-button{
+    background: ${theme.colors.white};
+    color: ${theme.colors.primary};
+}
+`

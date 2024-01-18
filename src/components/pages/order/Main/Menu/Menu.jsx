@@ -35,7 +35,7 @@ export default function Menu() {
             <Product key={produit.id} imageSource={produit.imageSource ? produit.imageSource : IMAGE_BY_DEFAULT} title={produit.title} leftDescription={formatPrice(produit.price)} 
             onDelete={() => handleDelete(produit.id)} onClick={() => handleClick(produit.id)}
             isHoverable={isModeAdmin}
-            isSelected={checkedIfProductIsClicked(produit.id, productSelected.id)}/>
+            isSelected={isModeAdmin && checkedIfProductIsClicked(produit.id, productSelected.id)}/>
             )
         })}
         </MenuStyled>
