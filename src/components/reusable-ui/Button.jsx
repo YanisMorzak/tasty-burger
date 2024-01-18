@@ -2,9 +2,9 @@ import React from 'react'
 import { css, styled } from 'styled-components';
 import { theme } from '../../theme';
 
-export default function Button({label, Icon, className, version, onClick}) {
+export default function Button({label, Icon, className, version, onClick, style}) {
   return (
-    <ButtonStyled className={className} version={version} onClick={onClick}>
+    <ButtonStyled className={className} version={version} onClick={onClick} style={style}>
     <span >{label}</span>
     <div className='icon'>{Icon && Icon}</div>
    </ButtonStyled>

@@ -11,7 +11,7 @@ const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
 export default function Menu() {
 
-  const {products, handleDelete, resetProducts, isModeAdmin, setproductSelected} = useContext(OrderContext)
+  const {products, handleDelete, resetProducts, isModeAdmin, setproductSelected, productSelected} = useContext(OrderContext)
 
   if(products.length === 0)
     return(
@@ -22,8 +22,11 @@ export default function Menu() {
     const handleClick = (idProduct) => {
       const productClickedOn = products.find((product) => product.id === idProduct)
       setproductSelected(productClickedOn);
-
     }
+
+    const checkedIfProductIsClicked = (idMenu, idClickedOn) => { 
+      return idMenu === idClickedOn ? true : false
+     }
 
   return (
     <MenuStyled className="menu">
@@ -31,7 +34,8 @@ export default function Menu() {
             return (
             <Product key={produit.id} imageSource={produit.imageSource ? produit.imageSource : IMAGE_BY_DEFAULT} title={produit.title} leftDescription={formatPrice(produit.price)} 
             onDelete={() => handleDelete(produit.id)} onClick={() => handleClick(produit.id)}
-            isHoverable={isModeAdmin}/>
+            isHoverable={isModeAdmin}
+            isSelected={checkedIfProductIsClicked(produit.id, productSelected.id)}/>
             )
         })}
         </MenuStyled>
