@@ -24,6 +24,12 @@ export default function Menu() {
       setproductSelected(productClickedOn);
     }
 
+    const handleCardDelete = (e, idProductToDelete) => { 
+      e.stopPropagation()
+      handleDelete(idProductToDelete)
+
+     }
+
     const checkedIfProductIsClicked = (idMenu, idClickedOn) => { 
       return idMenu === idClickedOn ? true : false
      }
@@ -33,9 +39,9 @@ export default function Menu() {
         {products.map((produit) => {
             return (
             <Product key={produit.id} imageSource={produit.imageSource ? produit.imageSource : IMAGE_BY_DEFAULT} title={produit.title} leftDescription={formatPrice(produit.price)} 
-            onDelete={() => handleDelete(produit.id)} onClick={() => handleClick(produit.id)}
+            onDelete={(e) => handleCardDelete(e, produit.id)} onClick={() => handleClick(produit.id)}
             isHoverable={isModeAdmin}
-            isSelected={isModeAdmin && checkedIfProductIsClicked(produit.id, productSelected.id)}/>
+            isSelected={isModeAdmin && checkedIfProductIsClicked(produit.id, productSelected.id)} />
             )
         })}
         </MenuStyled>
