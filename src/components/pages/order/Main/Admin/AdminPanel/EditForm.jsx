@@ -4,6 +4,7 @@ import { styled } from 'styled-components'
 import ImagePreview from './ImagePreview'
 import TextInput from '../../../../../reusable-ui/TextInput'
 import { getInputTextsConfig } from './inputTextConfig'
+import { theme } from '../../../../../../theme'
 
 export default function EditForm() {
   const {productSelected, setproductSelected, handleEdit} = useContext(OrderContext)
@@ -38,6 +39,7 @@ const inputTexts = getInputTextsConfig(productSelected)
           })}
            
         </div>
+        <div className='sentence'>Cliquer sur un produit du menu pour le modifier en temps réel</div>
     </AddEditStyled>
   )
 }
@@ -57,10 +59,12 @@ const AddEditStyled = styled.form`
     display: grid;
     grid-row-gap: 8px;
   }
-  .submit-button{
+  .sentence{
     grid-area: 4/2/5/3;
     display: flex;
     align-items: center;
+    color: ${theme.colors.primary};
+    font-size: ${theme.fonts.size.SM};
 
   }
 `;
