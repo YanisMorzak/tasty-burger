@@ -6,6 +6,7 @@ import { formatPrice } from '../../../../../utils/maths'
 import OrderContext from '../../../../../context/OrderContext';
 import EmptyMenuAdmin from './EmptyMenuAdmin';
 import EmptyMenuClient from './EmptyMenuClient';
+import { EMPTY_PRODUCT } from '../../../../../enums/product';
 
 const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
 
@@ -32,7 +33,7 @@ export default function Menu() {
     const handleCardDelete = (e, idProductToDelete) => { 
       e.stopPropagation()
       handleDelete(idProductToDelete)
-
+      productSelected.id == idProductToDelete ? setproductSelected(EMPTY_PRODUCT) : null
      }
 
     const checkedIfProductIsClicked = (idMenu, idClickedOn) => { 
