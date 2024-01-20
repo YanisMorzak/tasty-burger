@@ -5,6 +5,7 @@ import Button from '../../../../../reusable-ui/Button';
 import ImagePreview from './ImagePreview';
 import SubmitMessage from './SubmitMessage';
 import { getInputTextsConfig } from './inputTextConfig';
+import { theme } from '../../../../../../theme';
 
 export default function Form({onSubmit, onChange, product, isSubmitted}) {
 
@@ -27,11 +28,11 @@ export default function Form({onSubmit, onChange, product, isSubmitted}) {
           })}
            
         </div>
-        <div className='submit-button'>
+       { onSubmit ? <div className='submit-button'>
             <Button label={"Ajouter un nouveau produit au menu"} version="succes"/>
             {isSubmitted && <SubmitMessage />
             }
-        </div>
+        </div> : <div className='sentence'>Cliquer sur un produit du menu pour le modifier en temps réel</div>}
     </FormStyled>
   )
 }
@@ -55,6 +56,14 @@ const FormStyled = styled.form`
     grid-area: 4/2/5/3;
     display: flex;
     align-items: center;
+
+  }
+  .sentence{
+    grid-area: 4/2/5/3;
+    display: flex;
+    align-items: center;
+    color: ${theme.colors.primary};
+    font-size: ${theme.fonts.size.SM};
 
   }
 `;
