@@ -25,7 +25,7 @@ export default function Form({onSubmit, onChange, product, children}) {
           })}
            
         </div>
-       <div className='submit-button'>{children}</div>
+       <div className='form-footer'>{children}</div>
     </FormStyled>
   )
 }
@@ -45,11 +45,9 @@ const FormStyled = styled.form`
     display: grid;
     grid-row-gap: 8px;
   }
-  .submit-button{
+  .form-footer{
     grid-area: 4/2/5/3;
     display: flex;
     align-items: center;
-    height: 100%;
-
   }
 `;

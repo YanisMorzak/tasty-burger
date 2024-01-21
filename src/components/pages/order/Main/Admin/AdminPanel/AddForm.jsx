@@ -40,12 +40,10 @@ export default function AddForm() {
       product={newProduct} 
       isSubmitted={isSubmitted}
     >
-      <> 
-      <div className='submit-button'>
+      <>      
             <Button label={"Ajouter un nouveau produit au menu"} version="succes"/>
             {isSubmitted && <SubmitMessage />
-            }
-        </div>
+            }   
       </>
     </Form>
   )
