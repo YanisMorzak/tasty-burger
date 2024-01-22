@@ -2,8 +2,10 @@ import {AiOutlinePlus} from "react-icons/ai"
 import {MdModeEditOutline} from "react-icons/md"
 import AddForm from "./AdminPanel/AddForm"
 import EditForm from "./AdminPanel/EditForm"
+import { EMPTY_PRODUCT } from "../../../../../enums/product"
+import HintMessage from "./AdminPanel/HintMessage"
 
-export const tabsConfig = (currentTabSelected) => [
+export const tabsConfig = (currentTabSelected, productSelected) => [
   
     {
         index: "add",
@@ -19,7 +21,7 @@ export const tabsConfig = (currentTabSelected) => [
         id: 2,
         Icon: <MdModeEditOutline />  ,
         className: currentTabSelected ==="edit" ? "is-active" : "",
-        Content: <EditForm />
+        Content: productSelected == EMPTY_PRODUCT ? <HintMessage /> : <EditForm />
     }
 ]
 

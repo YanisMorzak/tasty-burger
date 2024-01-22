@@ -52,7 +52,7 @@ const extraSuccesStyle = css`
   border: 1px solid ${theme.colors.success};
   border-radius: ${theme.borderRadius.round};
   margin-right: 10px;
-  height: 100%;
+  height: 90%;
   padding: 0 1.5em;
   &:hover{
     color: ${theme.colors.success};

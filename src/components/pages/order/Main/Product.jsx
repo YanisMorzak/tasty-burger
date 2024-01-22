@@ -1,44 +1,49 @@
 import React, { useContext } from 'react'
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 import { theme } from '../../../../theme';
 import Button from '../../../reusable-ui/Button'
 import { TiDelete } from 'react-icons/ti';
 import OrderContext from '../../../../context/OrderContext';
 
-export default function Product({imageSource, title, leftDescription, onDelete}) {
+
+export default function Product({imageSource, title, leftDescription, onDelete, onClick, isHoverable, isSelected, handleCardDelete}) {
     const {isModeAdmin} = useContext(OrderContext)
 
   return (
-    <ProductStyled className='produit'>
-       { isModeAdmin && <button className='delete-button' aria-label='delete-button' onClick={onDelete}>
-            <TiDelete className='icon'/>
-        </button>}
-        <div className="image">
-            <img src={imageSource} alt={title} />
-        </div>
-        <div className='info-text'>
-            <div className='title'>{title}</div>
-            <div className='description'>
-                <div className='left-description'>{leftDescription}</div>
-                <div className='right-description'> 
-                <Button className="primary-button" label={"Ajouter"} version="normal" /></div>
-        </div>
-        </div>               
+    <ProductStyled className='produit' onClick={onClick} isHoverable={isHoverable} isSelected={isSelected}>
+    <div className='card'>
+           { isModeAdmin && <button className='delete-button' aria-label='delete-button' onClick={onDelete} handleCardDelete={handleCardDelete}>
+                <TiDelete className='icon'/>
+            </button>}
+            <div className="image">
+                <img src={imageSource} alt={title} />
+            </div>
+            <div className='info-text'>
+                <div className='title'>{title}</div>
+                <div className='description'>
+                    <div className='left-description'>{leftDescription}</div>
+                    <div className='right-description'> 
+                    <Button className="primary-button" label={"Ajouter"} version="normal" onClick={(e) => e.stopPropagation()}/></div>
+            </div>
+            </div>   
+    </div>            
     </ProductStyled>
   )
 }
 
 const ProductStyled = styled.div`
-        background: ${theme.colors.white};
-        width: 240px;
-        height: 330px;
-        display: grid;
-        grid-template-rows: 65% 1fr;
-        box-sizing: border-box;
-        padding: 20px 20px 10px 20px;
-        box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
-        border-radius: ${theme.borderRadius.extraRound};
-        position: relative;
+
+.card{        
+    background: ${theme.colors.white};
+    width: 240px;
+    height: 330px;
+    display: grid;
+    grid-template-rows: 65% 1fr;
+    box-sizing: border-box;
+    padding: 20px 20px 10px 20px;
+    box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+    border-radius: ${theme.borderRadius.extraRound};
+    position: relative;
 
         .delete-button{
             position: absolute;
@@ -57,11 +62,11 @@ const ProductStyled = styled.div`
                 width: 100%;
             }
 
-            :hover{
+            &:hover{
                 color: ${theme.colors.red};
                 background: none;                
             }
-            :active{
+            &:active{
                 color: ${theme.colors.primary};
             }
 
@@ -131,4 +136,42 @@ const ProductStyled = styled.div`
                 }
             }
         }
+        ${(props) => props.isHoverable && hoverableStyle}
+        ${(props) => props.isSelected && selectedStyle}        
+        }
 `;
+
+const hoverableStyle = css`
+&:hover{
+    box-sizing: border-box;
+    width: 240px;
+    height: 330px;
+    transform: scale(1.04);
+    transition: 0.4s;
+    box-shadow: ${theme.shadows.orange};
+    border-radius: ${theme.borderRadius.extraRound};
+    cursor: pointer;
+    }`
+
+const selectedStyle = css`
+background: ${theme.colors.primary};
+
+.delete-button{
+    color: ${theme.colors.white};
+
+    &:active{
+        color: ${theme.colors.white};
+    }
+}
+.info-text{
+    .description{   
+        .left-description{
+        color: ${theme.colors.white};
+        }
+    }
+}
+.primary-button{
+    background: ${theme.colors.white};
+    color: ${theme.colors.primary};
+}
+`
