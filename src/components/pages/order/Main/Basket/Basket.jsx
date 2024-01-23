@@ -3,13 +3,14 @@ import { styled } from 'styled-components';
 import { theme } from '../../../../../theme';
 import Total from './Total';
 import { formatPrice } from '../../../../../utils/maths';
+import BasketBody from './BasketBody';
 
 export default function Basket() {
   return (
      <BasketStyled className="basket">
         <Total amountToPay={formatPrice(0)}/>
-        <div className="main-basket">Main</div>
-        <div className="footer-basket">Footer</div>
+        <BasketBody />
+        <div className="footer-basket">Codé avec ❤️ et React.JS</div>
      </BasketStyled> 
   )
 }
@@ -19,14 +20,17 @@ const BasketStyled = styled.div`
    display: flex;
    flex-direction: column;
 
-   .main-basket{
-    flex: 1;
-    background: ${theme.colors.background_white};
-    box-shadow: ${theme.shadows.basket};
-   }
    .footer-basket{
     height: 70px;
     background: ${theme.colors.background_dark};
+    color: ${theme.colors.white};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Italiana', sans-serif;
+    font-weight: 500;
+    font-size: ${theme.fonts.size.P1};
+
    }
   
 `;
