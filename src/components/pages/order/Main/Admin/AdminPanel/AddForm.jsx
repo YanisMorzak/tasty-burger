@@ -1,15 +1,15 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import OrderContext from '../../../../../../context/OrderContext';
 import { EMPTY_PRODUCT } from '../../../../../../enums/product';
 import Form from './Form'
 import Button from '../../../../../reusable-ui/Button';
 import SubmitMessage from './SubmitMessage';
+import { useSuccessMessage } from '../../../../../../hooks/useSuccessMessage';
 
 export default function AddForm() {
 
     const {handleAddProduct, newProduct, setNewProduct} = useContext(OrderContext)
-
-    const [isSubmitted, setisSubmitted] = useState(false)
+    const {isSubmitted, displaySuccessMessage} = useSuccessMessage()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -18,13 +18,8 @@ export default function AddForm() {
             id: crypto.randomUUID()
         }       
         handleAddProduct(newProductToAdd)
-        setNewProduct(EMPTY_PRODUCT)
-
-        setisSubmitted(true)
-        setTimeout(() => {
-            setisSubmitted(false)
-        }, 2000)
-        
+        setNewProduct(EMPTY_PRODUCT) 
+        displaySuccessMessage()       
     }
 
     const handleChange = (e) => {

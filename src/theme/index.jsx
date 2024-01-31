@@ -66,6 +66,7 @@ const shadows = {
   medium: "-8px 8px 20px 0px rgb(0 0 0 / 20%)",
   strong: "0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset",
   orange: "0 0 8px 0px rgb(255 154 35 / 100%)",
+  basket: "0px 0px 20px 0px #00000033 inset",
 }
 
 export const theme = {
