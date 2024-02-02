@@ -6,9 +6,7 @@ import { formatPrice } from '../../../../../utils/maths'
 import OrderContext from '../../../../../context/OrderContext';
 import EmptyMenuAdmin from './EmptyMenuAdmin';
 import EmptyMenuClient from './EmptyMenuClient';
-import { EMPTY_PRODUCT } from '../../../../../enums/product';
-
-const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
+import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT } from '../../../../../enums/product';
 
 export default function Menu() {
 

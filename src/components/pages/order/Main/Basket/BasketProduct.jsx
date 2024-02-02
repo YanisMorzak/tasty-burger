@@ -1,6 +1,7 @@
 import React from 'react'
 import BasketCard from './BasketCard'
 import { styled } from 'styled-components';
+import { IMAGE_BY_DEFAULT } from '../../../../../enums/product';
 
 
 export default function BasketProduct({basket}) {
@@ -9,7 +10,7 @@ export default function BasketProduct({basket}) {
     <BasketProductStyled>
         {basket.map((basketProduct) => (
            <div className='basket-card'>
-             <BasketCard price={basketProduct.price} imageSource={basketProduct.imageSource} title={basketProduct.title} quantity={basketProduct.quantity}/>
+             <BasketCard price={basketProduct.price} imageSource={basketProduct.imageSource ? basketProduct.imageSource : IMAGE_BY_DEFAULT} title={basketProduct.title} quantity={basketProduct.quantity}/>
            </div>
         ))}
     </BasketProductStyled>
