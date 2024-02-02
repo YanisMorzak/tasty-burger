@@ -19,6 +19,8 @@ const BasketStyled = styled.div`
    background: pink;
    display: flex;
    flex-direction: column;
+   overflow-y: hidden;
+   
 
    .footer-basket{
     height: 70px;

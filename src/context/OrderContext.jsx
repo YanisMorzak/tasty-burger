@@ -17,6 +17,8 @@ export default createContext({
 setIsCollapse: () => {},
 
     products: [],
+
+    basket: [],
    
     handleAddProduct: () => {},
     handleDelete: () => {},
