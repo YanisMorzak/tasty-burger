@@ -2,10 +2,14 @@ import React from 'react'
 import { formatPrice } from '../../../../../utils/maths'
 import { styled } from 'styled-components';
 import { theme } from '../../../../../theme';
+import { MdDeleteForever } from 'react-icons/md';
 
 export default function BasketCard({price, imageSource, title, quantity}) {
   return (
     <BasketCardStyled>
+         <div className="delete-button">
+        <MdDeleteForever className="icon" />
+      </div>
         <div className="image">
             <img src={imageSource} alt="" />
         </div>
@@ -40,6 +44,8 @@ const BasketCardStyled = styled.div`
   background: ${theme.colors.white};
   box-shadow: ${theme.shadows.cardBasket};
 
+  position: relative;
+
   .image {
     box-sizing: border-box;
     height: 70px;
@@ -53,6 +59,7 @@ const BasketCardStyled = styled.div`
     }
   }
     .text-info{
+        user-select: none;
         margin-left: 20px;
         display: grid;
         grid-template-columns: 70% 1fr;
@@ -90,6 +97,51 @@ const BasketCardStyled = styled.div`
             font-size: ${theme.fonts.size.XS};
         }
     }
+
+    .delete-button {
+    display: none;
+    z-index: 1;
+  }
+
+  /* hover de la card */
+  &:hover {
+    .delete-button {
+      /* border: 1px solid red; */
+      border: none;
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 76px;
+      border-top-right-radius: ${theme.borderRadius.round};
+      border-bottom-right-radius: ${theme.borderRadius.round};
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: ${theme.colors.red};
+      color: ${theme.colors.white};
+      cursor: pointer;
+
+      .icon {
+        width: ${theme.fonts.size.P3};
+        height: ${theme.fonts.size.P3};
+      }
+
+      /* behaviour on delete-button hover */
+      &:hover {
+        .icon {
+          color: ${theme.colors.dark};
+        }
+        &:active {
+          .icon {
+            color: ${theme.colors.white};
+          }
+        }
+      }
+    }
+  }
     
 `;
 

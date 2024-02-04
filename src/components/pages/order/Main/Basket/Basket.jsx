@@ -9,8 +9,6 @@ import OrderContext from '../../../../../context/OrderContext';
 export default function Basket() {
    const {basket} = useContext(OrderContext)
 
-   
-
    const sumToPay = basket.reduce((total, basketProduct) => {
       if(isNaN(basketProduct.price)){
          return total
@@ -19,7 +17,7 @@ export default function Basket() {
       total += basketProduct.price * basketProduct.quantity
       return total
     }, 0)
-    
+
   return (
      <BasketStyled className="basket">
         <Total amountToPay={formatPrice(sumToPay)}/>

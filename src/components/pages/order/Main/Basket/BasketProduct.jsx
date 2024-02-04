@@ -9,8 +9,8 @@ export default function BasketProduct({basket}) {
   return (
     <BasketProductStyled>
         {basket.map((basketProduct) => (
-           <div className='basket-card'>
-             <BasketCard key={basketProduct.id} price={basketProduct.price} imageSource={basketProduct.imageSource ? basketProduct.imageSource : IMAGE_BY_DEFAULT} title={basketProduct.title} quantity={basketProduct.quantity}/>
+           <div className='basket-card' key={basketProduct.id}>
+             <BasketCard price={basketProduct.price} imageSource={basketProduct.imageSource ? basketProduct.imageSource : IMAGE_BY_DEFAULT} title={basketProduct.title} quantity={basketProduct.quantity}/>
            </div>
         ))}
     </BasketProductStyled>
