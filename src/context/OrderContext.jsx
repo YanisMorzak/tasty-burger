@@ -19,6 +19,7 @@ setIsCollapse: () => {},
     products: [],
 
     basket: [],
+    handleAddToBasket: () => {},
    
     handleAddProduct: () => {},
     handleDelete: () => {},

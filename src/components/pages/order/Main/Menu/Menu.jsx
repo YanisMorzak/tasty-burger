@@ -10,7 +10,7 @@ import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT } from '../../../../../enums/product';
 
 export default function Menu() {
 
-  const {products, handleDelete, resetProducts, isModeAdmin, setproductSelected, productSelected, setIsCollapse, setCurrentTabSelected} = useContext(OrderContext)
+  const {products, handleDelete, resetProducts, isModeAdmin, setproductSelected, productSelected, setIsCollapse, setCurrentTabSelected, handleAddToBasket} = useContext(OrderContext)
 
   if(products.length === 0)
     return(
@@ -34,6 +34,14 @@ export default function Menu() {
       productSelected.id == idProductToDelete ? setproductSelected(EMPTY_PRODUCT) : null
      }
 
+     const handleAddButton = (e, idProduct) => {
+      e.stopPropagation()
+        const productToAdd = products.find((product) => product.id === idProduct)
+        console.log(productToAdd);
+        handleAddToBasket(productToAdd)
+
+     }
+
     const checkedIfProductIsClicked = (idMenu, idClickedOn) => { 
       return idMenu === idClickedOn ? true : false
      }
@@ -45,7 +53,7 @@ export default function Menu() {
             <Product key={produit.id} imageSource={produit.imageSource ? produit.imageSource : IMAGE_BY_DEFAULT} title={produit.title} leftDescription={formatPrice(produit.price)} 
             onDelete={(e) => handleCardDelete(e, produit.id)} onClick={() => handleClick(produit.id)}
             isHoverable={isModeAdmin}
-            isSelected={isModeAdmin && checkedIfProductIsClicked(produit.id, productSelected.id)} />
+            isSelected={isModeAdmin && checkedIfProductIsClicked(produit.id, productSelected.id)} onAdd={(e) => handleAddButton(e, produit.id)}/>
             )
         })}
         </MenuStyled>
