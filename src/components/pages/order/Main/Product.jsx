@@ -6,7 +6,7 @@ import { TiDelete } from 'react-icons/ti';
 import OrderContext from '../../../../context/OrderContext';
 
 
-export default function Product({imageSource, title, leftDescription, onDelete, onClick, isHoverable, isSelected, handleCardDelete}) {
+export default function Product({imageSource, title, leftDescription, onDelete, onClick, isHoverable, isSelected, handleCardDelete, onAdd}) {
     const {isModeAdmin} = useContext(OrderContext)
 
   return (
@@ -23,7 +23,7 @@ export default function Product({imageSource, title, leftDescription, onDelete, 
                 <div className='description'>
                     <div className='left-description'>{leftDescription}</div>
                     <div className='right-description'> 
-                    <Button className="primary-button" label={"Ajouter"} version="normal" onClick={(e) => e.stopPropagation()}/></div>
+                    <Button className="primary-button" label={"Ajouter"} version="normal" onClick={onAdd}/></div>
             </div>
             </div>   
     </div>            

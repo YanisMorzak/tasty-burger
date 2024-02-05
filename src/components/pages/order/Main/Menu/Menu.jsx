@@ -6,13 +6,11 @@ import { formatPrice } from '../../../../../utils/maths'
 import OrderContext from '../../../../../context/OrderContext';
 import EmptyMenuAdmin from './EmptyMenuAdmin';
 import EmptyMenuClient from './EmptyMenuClient';
-import { EMPTY_PRODUCT } from '../../../../../enums/product';
-
-const IMAGE_BY_DEFAULT = "/images/coming-soon.png";
+import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT } from '../../../../../enums/product';
 
 export default function Menu() {
 
-  const {products, handleDelete, resetProducts, isModeAdmin, setproductSelected, productSelected, setIsCollapse, setCurrentTabSelected} = useContext(OrderContext)
+  const {products, handleDelete, resetProducts, isModeAdmin, setproductSelected, productSelected, setIsCollapse, setCurrentTabSelected, handleAddToBasket, handleDeleteBasketProduct} = useContext(OrderContext)
 
   if(products.length === 0)
     return(
@@ -33,7 +31,16 @@ export default function Menu() {
     const handleCardDelete = (e, idProductToDelete) => { 
       e.stopPropagation()
       handleDelete(idProductToDelete)
+      handleDeleteBasketProduct(idProductToDelete)
       productSelected.id == idProductToDelete ? setproductSelected(EMPTY_PRODUCT) : null
+     }
+
+     const handleAddButton = (e, idProduct) => {
+      e.stopPropagation()
+        const productToAdd = products.find((product) => product.id === idProduct)
+        console.log(productToAdd);
+        handleAddToBasket(productToAdd)
+
      }
 
     const checkedIfProductIsClicked = (idMenu, idClickedOn) => { 
@@ -47,7 +54,7 @@ export default function Menu() {
             <Product key={produit.id} imageSource={produit.imageSource ? produit.imageSource : IMAGE_BY_DEFAULT} title={produit.title} leftDescription={formatPrice(produit.price)} 
             onDelete={(e) => handleCardDelete(e, produit.id)} onClick={() => handleClick(produit.id)}
             isHoverable={isModeAdmin}
-            isSelected={isModeAdmin && checkedIfProductIsClicked(produit.id, productSelected.id)} />
+            isSelected={isModeAdmin && checkedIfProductIsClicked(produit.id, productSelected.id)} onAdd={(e) => handleAddButton(e, produit.id)}/>
             )
         })}
         </MenuStyled>

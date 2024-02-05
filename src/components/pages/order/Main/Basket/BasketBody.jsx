@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { styled } from 'styled-components';
 import { theme } from '../../../../../theme';
+import OrderContext from '../../../../../context/OrderContext';
+import BasketProduct from './BasketProduct';
+
 
 export default function BasketBody() {
+  const {basket, handleDeleteBasketProduct} = useContext(OrderContext)
+  const isBasketEmpty = basket.length === 0
   return (
-    <BasketBodyStyled>Votre commande est vide.</BasketBodyStyled>
+    <BasketBodyStyled>
+      {isBasketEmpty ? "Votre commande est vide." : <BasketProduct  basket={basket} handleDeleteBasketProduct={handleDeleteBasketProduct}/>}
+      
+      </BasketBodyStyled>
   )
 }
 
@@ -19,4 +27,5 @@ const BasketBodyStyled = styled.div`
     font-size: ${theme.fonts.size.P3};
     font-weight: 700;
     color: ${theme.colors.greyBlue};
+    overflow-y: scroll;
 `;

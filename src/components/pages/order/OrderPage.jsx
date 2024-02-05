@@ -6,6 +6,7 @@ import { theme } from '../../../theme';
 import OrderContext from '../../../context/OrderContext';
 import { EMPTY_PRODUCT } from '../../../enums/product';
 import { useProduct } from '../../../hooks/useProduct';
+import { useBasket } from '../../../hooks/useBasket';
 
 
 export default function OrderPage() {
@@ -15,6 +16,7 @@ export default function OrderPage() {
     const [isCollapse, setIsCollapse] = useState(false)
     const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT)
     const {handleAddProduct, handleDelete, handleEdit, resetProducts, products} = useProduct()
+    const {basket, handleAddToBasket, handleDeleteBasketProduct} = useBasket()
 
     const orderContextValue = {
       isModeAdmin,
@@ -27,6 +29,10 @@ export default function OrderPage() {
       setIsCollapse,
 
       products,
+
+      basket,
+      handleAddToBasket,
+      handleDeleteBasketProduct,
     
       handleAddProduct,
       handleDelete,

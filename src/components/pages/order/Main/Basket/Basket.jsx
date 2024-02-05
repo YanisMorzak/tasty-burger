@@ -1,14 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { styled } from 'styled-components';
 import { theme } from '../../../../../theme';
 import Total from './Total';
 import { formatPrice } from '../../../../../utils/maths';
 import BasketBody from './BasketBody';
+import OrderContext from '../../../../../context/OrderContext';
 
 export default function Basket() {
+   const {basket} = useContext(OrderContext)
+
+   const sumToPay = basket.reduce((total, basketProduct) => {
+      if(isNaN(basketProduct.price)){
+         return total
+      }
+
+      total += basketProduct.price * basketProduct.quantity
+      return total
+    }, 0)
+
   return (
      <BasketStyled className="basket">
-        <Total amountToPay={formatPrice(0)}/>
+        <Total amountToPay={formatPrice(sumToPay)}/>
         <BasketBody />
         <div className="footer-basket">Codé avec ❤️ et React.JS</div>
      </BasketStyled> 
@@ -19,6 +31,8 @@ const BasketStyled = styled.div`
    background: pink;
    display: flex;
    flex-direction: column;
+   overflow-y: hidden;
+   
 
    .footer-basket{
     height: 70px;
