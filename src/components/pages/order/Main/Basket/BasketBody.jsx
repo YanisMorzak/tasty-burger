@@ -6,11 +6,11 @@ import BasketProduct from './BasketProduct';
 
 
 export default function BasketBody() {
-  const {basket} = useContext(OrderContext)
+  const {basket, handleDeleteBasketProduct} = useContext(OrderContext)
   const isBasketEmpty = basket.length === 0
   return (
     <BasketBodyStyled>
-      {isBasketEmpty ? "Votre commande est vide." : <BasketProduct  basket={basket}/>}
+      {isBasketEmpty ? "Votre commande est vide." : <BasketProduct  basket={basket} handleDeleteBasketProduct={handleDeleteBasketProduct}/>}
       
       </BasketBodyStyled>
   )

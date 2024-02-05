@@ -16,7 +16,7 @@ export default function OrderPage() {
     const [isCollapse, setIsCollapse] = useState(false)
     const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT)
     const {handleAddProduct, handleDelete, handleEdit, resetProducts, products} = useProduct()
-    const {basket, handleAddToBasket} = useBasket()
+    const {basket, handleAddToBasket, handleDeleteBasketProduct} = useBasket()
 
     const orderContextValue = {
       isModeAdmin,
@@ -32,6 +32,7 @@ export default function OrderPage() {
 
       basket,
       handleAddToBasket,
+      handleDeleteBasketProduct,
     
       handleAddProduct,
       handleDelete,

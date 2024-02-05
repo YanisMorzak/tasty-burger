@@ -4,10 +4,10 @@ import { styled } from 'styled-components';
 import { theme } from '../../../../../theme';
 import { MdDeleteForever } from 'react-icons/md';
 
-export default function BasketCard({price, imageSource, title, quantity}) {
+export default function BasketCard({price, imageSource, title, quantity, onDelete}) {
   return (
     <BasketCardStyled>
-         <div className="delete-button">
+         <div className="delete-button" onClick={onDelete}>
         <MdDeleteForever className="icon" />
       </div>
         <div className="image">

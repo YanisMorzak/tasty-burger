@@ -20,6 +20,7 @@ setIsCollapse: () => {},
 
     basket: [],
     handleAddToBasket: () => {},
+    handleDeleteBasketProduct: () => {},
    
     handleAddProduct: () => {},
     handleDelete: () => {},
