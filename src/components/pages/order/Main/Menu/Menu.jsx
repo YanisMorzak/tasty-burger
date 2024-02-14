@@ -35,11 +35,10 @@ export default function Menu() {
       productSelected.id == idProductToDelete ? setproductSelected(EMPTY_PRODUCT) : null
      }
 
-     const handleAddButton = (e, idProduct) => {
+     const handleAddButton = (e, idProductToAdd) => {
       e.stopPropagation()
-        const productToAdd = products.find((product) => product.id === idProduct)
-        console.log(productToAdd);
-        handleAddToBasket(productToAdd)
+        // const productToAdd = products.find((product) => product.id === idProductToAdd)
+        handleAddToBasket(idProductToAdd)
 
      }
 
