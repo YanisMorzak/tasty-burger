@@ -31,7 +31,7 @@ export default function Menu() {
     const handleCardDelete = (e, idProductToDelete) => { 
       e.stopPropagation()
       handleDelete(idProductToDelete)
-      handleDeleteBasketProduct(idProductToDelete)
+      handleDeleteBasketProduct(e, idProductToDelete)
       productSelected.id == idProductToDelete ? setproductSelected(EMPTY_PRODUCT) : null
      }
 

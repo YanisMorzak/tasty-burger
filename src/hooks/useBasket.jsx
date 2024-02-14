@@ -31,7 +31,8 @@ export const useBasket = () => {
         setBasket(basketUpdated)
       }
 
-      const handleDeleteBasketProduct = (idBasketProduct) => { 
+      const handleDeleteBasketProduct = (e, idBasketProduct) => { 
+        e.stopPropagation()
         const basketCopy = deepClone(basket)
     
         const basketUpdated = basketCopy.filter((product) => product.id !== idBasketProduct)
