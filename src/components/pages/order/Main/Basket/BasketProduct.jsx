@@ -6,7 +6,7 @@ import OrderContext from '../../../../../context/OrderContext';
 
 export default function BasketProduct() {  
 
-  const {basket, handleDeleteBasketProduct, products, isModeAdmin, setIsCollapse, setCurrentTabSelected, setproductSelected} = useContext(OrderContext)
+  const {basket, handleDeleteBasketProduct, products, isModeAdmin, setIsCollapse, setCurrentTabSelected, setproductSelected, productSelected} = useContext(OrderContext)
 
   const handleClick = (idProduct) => { 
     if(!isModeAdmin) return
@@ -17,6 +17,10 @@ export default function BasketProduct() {
     const productClickedOn = products.find((product) => product.id === idProduct)
     setproductSelected(productClickedOn);
    }
+
+   const checkedIfProductIsClicked = (idMenu, idClickedOn) => { 
+    return idMenu === idClickedOn ? true : false
+   }
     
   return (
     <BasketProductStyled>
@@ -24,7 +28,8 @@ export default function BasketProduct() {
           const menuProduct = products.find((product) => product.id === basketProduct.id)
           return (
            <div className='basket-card' key={basketProduct.id}>
-             <BasketCard price={menuProduct.price} imageSource={menuProduct.imageSource ? menuProduct.imageSource : IMAGE_BY_DEFAULT} title={menuProduct.title} quantity={basketProduct.quantity} onDelete={(e) => handleDeleteBasketProduct(e, basketProduct.id)}  onClick={() => handleClick(basketProduct.id)} isModeAdmin={isModeAdmin}/>
+             <BasketCard price={menuProduct.price} imageSource={menuProduct.imageSource ? menuProduct.imageSource : IMAGE_BY_DEFAULT} title={menuProduct.title} quantity={basketProduct.quantity} onDelete={(e) => handleDeleteBasketProduct(e, basketProduct.id)}  onClick={() => handleClick(basketProduct.id)} isModeAdmin={isModeAdmin}
+             isSelected={isModeAdmin && checkedIfProductIsClicked(basketProduct.id, productSelected.id)}/>
            </div>
         )})}
     </BasketProductStyled>
