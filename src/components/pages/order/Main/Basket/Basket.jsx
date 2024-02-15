@@ -7,14 +7,12 @@ import BasketBody from './BasketBody';
 import OrderContext from '../../../../../context/OrderContext';
 
 export default function Basket() {
-   const {basket} = useContext(OrderContext)
+   const {basket, products} = useContext(OrderContext)
 
    const sumToPay = basket.reduce((total, basketProduct) => {
-      if(isNaN(basketProduct.price)){
-         return total
-      }
-
-      total += basketProduct.price * basketProduct.quantity
+      const menuProduct = products.find((product) => product.id === basketProduct.id)
+      if (isNaN(menuProduct.price)) return total
+      total += menuProduct.price * basketProduct.quantity
       return total
     }, 0)
 
