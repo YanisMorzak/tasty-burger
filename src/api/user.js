@@ -24,3 +24,14 @@ export const createUser = (idUser) => {
   // setDoc(CACHETTE, NOURRITURE)
   setDoc(docRef, newDoc);
 };
+
+export const authenticateUser = async (idUser) => {
+  //1. récupère un existingUser
+  const existingUser = await getUser(idUser);
+  console.log(existingUser);
+
+  //2. sinon tu créé un newUser
+  if (!existingUser) {
+    createUser(idUser);
+  }
+};
