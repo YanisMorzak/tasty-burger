@@ -31,4 +31,6 @@ setIsCollapse: () => {},
 
     productSelected: {}, 
     setproductSelected: () => {},
+
+    username: "",
 })
