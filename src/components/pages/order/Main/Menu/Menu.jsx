@@ -10,7 +10,7 @@ import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT } from '../../../../../enums/product';
 
 export default function Menu() {
 
-  const {products, handleDelete, resetProducts, isModeAdmin, setproductSelected, productSelected, setIsCollapse, setCurrentTabSelected, handleAddToBasket, handleDeleteBasketProduct} = useContext(OrderContext)
+  const {products, handleDelete, resetProducts, isModeAdmin, setproductSelected, productSelected, setIsCollapse, setCurrentTabSelected, handleAddToBasket, handleDeleteBasketProduct, username} = useContext(OrderContext)
 
   if(products.length === 0)
     return(
@@ -30,7 +30,7 @@ export default function Menu() {
 
     const handleCardDelete = (e, idProductToDelete) => { 
       e.stopPropagation()
-      handleDelete(idProductToDelete)
+      handleDelete(idProductToDelete, username)
       handleDeleteBasketProduct(e, idProductToDelete)
       productSelected.id == idProductToDelete ? setproductSelected(EMPTY_PRODUCT) : null
      }

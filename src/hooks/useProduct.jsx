@@ -20,12 +20,13 @@ export const useProduct = () => {
         
       }
   
-      const handleDelete = (idOfProductDeleted) => {
+      const handleDelete = (idOfProductDeleted, username) => {
         const productsCopy = deepClone(products)
     
         const productsUpdated = productsCopy.filter((product) => product.id !== idOfProductDeleted)
     
         setProducts(productsUpdated)
+        syncBothMenu(username, productsUpdated)
       }
   
       const handleEdit = (productBeingUpdated) => {
@@ -45,5 +46,5 @@ export const useProduct = () => {
         setProducts(fakeMenu.LARGE)
       }
 
-      return {handleAddProduct, handleDelete, handleEdit, resetProducts, products}
+      return {handleAddProduct, handleDelete, handleEdit, resetProducts, products, setProducts}
  }
