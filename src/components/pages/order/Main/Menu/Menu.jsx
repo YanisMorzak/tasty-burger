@@ -46,7 +46,7 @@ export default function Menu() {
 
      if(products.length === 0)
     return(
-    isModeAdmin ? <EmptyMenuAdmin resetProducts={resetProducts}/> : <EmptyMenuClient />
+    isModeAdmin ? <EmptyMenuAdmin resetProducts={() => resetProducts(username)}/> : <EmptyMenuClient />
     )
 
   return (

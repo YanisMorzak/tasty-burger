@@ -42,8 +42,9 @@ export const useProduct = () => {
         setProducts(copyProducts)
       }
   
-      const resetProducts = () => {
+      const resetProducts = (username) => {
         setProducts(fakeMenu.LARGE)
+        syncBothMenu(username, fakeMenu.LARGE)
       }
 
       return {handleAddProduct, handleDelete, handleEdit, resetProducts, products, setProducts}
