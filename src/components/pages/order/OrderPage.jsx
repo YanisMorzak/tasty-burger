@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components';
 import NavBar from './NavBar/NavBar';
 import Main from './Main/Main';
@@ -8,6 +8,7 @@ import { EMPTY_PRODUCT } from '../../../enums/product';
 import { useProduct } from '../../../hooks/useProduct';
 import { useBasket } from '../../../hooks/useBasket';
 import { useParams } from 'react-router-dom';
+import { getMenu } from '../../../api/product';
 
 
 export default function OrderPage() {
@@ -16,7 +17,7 @@ export default function OrderPage() {
     const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
     const [isCollapse, setIsCollapse] = useState(false)
     const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT)
-    const {handleAddProduct, handleDelete, handleEdit, resetProducts, products} = useProduct()
+    const {handleAddProduct, handleDelete, handleEdit, resetProducts, products, setProducts} = useProduct()
     const {basket, handleAddToBasket, handleDeleteBasketProduct} = useBasket()
     const {username} = useParams()
 
@@ -48,6 +49,18 @@ export default function OrderPage() {
 
       username,
     }
+
+    const initialiseMenu = async () => {
+      const menuReceived = await getMenu(username)
+      console.log("menuReceived", menuReceived);
+      setProducts(menuReceived)
+
+    }
+
+    useEffect(() => {    
+      initialiseMenu()
+    }, [])
+    
 
 
   return (

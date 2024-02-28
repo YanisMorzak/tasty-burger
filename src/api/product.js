@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "./firebase-config";
 
 export const syncBothMenu = (userId, menuUpdated) => {
@@ -10,4 +10,14 @@ export const syncBothMenu = (userId, menuUpdated) => {
   };
 
   setDoc(docRef, docUpdated);
+};
+
+export const getMenu = async (idUser) => {
+  const docRef = doc(db, "users", idUser);
+
+  const docSnapshot = await getDoc(docRef);
+  if (docSnapshot.exists) {
+    const menuReceived = docSnapshot.data();
+    return menuReceived.menu;
+  }
 };
