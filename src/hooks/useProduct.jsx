@@ -4,7 +4,7 @@ import { deepClone } from "../utils/array"
 import { syncBothMenu } from "../api/product"
 
 export const useProduct = () => { 
-    const [products, setProducts] = useState(fakeMenu.LARGE)
+    const [products, setProducts] = useState()
 
     //gestionnaire de state (state handlers)
     const handleAddProduct = (newProduct, username) => {

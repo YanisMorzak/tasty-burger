@@ -7,15 +7,11 @@ import OrderContext from '../../../../../context/OrderContext';
 import EmptyMenuAdmin from './EmptyMenuAdmin';
 import EmptyMenuClient from './EmptyMenuClient';
 import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT } from '../../../../../enums/product';
+import Loader from './Loader';
 
 export default function Menu() {
 
   const {products, handleDelete, resetProducts, isModeAdmin, setproductSelected, productSelected, setIsCollapse, setCurrentTabSelected, handleAddToBasket, handleDeleteBasketProduct, username} = useContext(OrderContext)
-
-  if(products.length === 0)
-    return(
-    isModeAdmin ? <EmptyMenuAdmin resetProducts={resetProducts}/> : <EmptyMenuClient />
-    )
     
     //gestionnaire d'évènement (event handlers)
     const handleClick = (idProduct) => {
@@ -45,6 +41,13 @@ export default function Menu() {
     const checkedIfProductIsClicked = (idMenu, idClickedOn) => { 
       return idMenu === idClickedOn ? true : false
      }
+
+     if (products === undefined) return <Loader />
+
+     if(products.length === 0)
+    return(
+    isModeAdmin ? <EmptyMenuAdmin resetProducts={resetProducts}/> : <EmptyMenuClient />
+    )
 
   return (
     <MenuStyled className="menu">
