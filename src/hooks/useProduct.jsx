@@ -29,7 +29,7 @@ export const useProduct = () => {
         syncBothMenu(username, productsUpdated)
       }
   
-      const handleEdit = (productBeingUpdated) => {
+      const handleEdit = (productBeingUpdated, username) => {
         // Copie du state (deep clone)
         const copyProducts = deepClone(products)
         
@@ -40,6 +40,7 @@ export const useProduct = () => {
   
         //Update du state
         setProducts(copyProducts)
+        syncBothMenu(username, copyProducts)
       }
   
       const resetProducts = (username) => {
