@@ -4,7 +4,7 @@ import TextInput from '../../../../../reusable-ui/TextInput';
 import ImagePreview from './ImagePreview';
 import { getInputTextsConfig } from './inputTextConfig';
 
-export default function Form({onSubmit, onChange, product, children}) {
+export default function Form({onSubmit, onChange, onFocus, onBlur, product, children}) {
 
     const inputTexts = getInputTextsConfig(product)
    
@@ -21,6 +21,8 @@ export default function Form({onSubmit, onChange, product, children}) {
             onChange={onChange} 
             Icon={input.Icon} 
             version={input.version}
+            onFocus={onFocus}
+            onBlur={onBlur}
             />
           })}
            
