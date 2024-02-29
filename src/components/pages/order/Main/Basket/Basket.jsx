@@ -9,6 +9,8 @@ import OrderContext from '../../../../../context/OrderContext';
 export default function Basket() {
    const {basket, products} = useContext(OrderContext)
 
+   if (products === undefined) return <span>Chargement...</span>
+
    const sumToPay = basket.reduce((total, basketProduct) => {
       const menuProduct = products.find((product) => product.id === basketProduct.id)
       if (isNaN(menuProduct.price)) return total

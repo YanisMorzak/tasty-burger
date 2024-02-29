@@ -9,6 +9,7 @@ import { useProduct } from '../../../hooks/useProduct';
 import { useBasket } from '../../../hooks/useBasket';
 import { useParams } from 'react-router-dom';
 import { getMenu } from '../../../api/product';
+import { getLocalStorage } from '../../../utils/window';
 
 
 export default function OrderPage() {
@@ -18,7 +19,7 @@ export default function OrderPage() {
     const [isCollapse, setIsCollapse] = useState(false)
     const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT)
     const {handleAddProduct, handleDelete, handleEdit, resetProducts, products, setProducts} = useProduct()
-    const {basket, handleAddToBasket, handleDeleteBasketProduct} = useBasket()
+    const {basket, setBasket, handleAddToBasket, handleDeleteBasketProduct} = useBasket()
     const {username} = useParams()
 
     const orderContextValue = {
@@ -54,11 +55,19 @@ export default function OrderPage() {
       const menuReceived = await getMenu(username)
       console.log("menuReceived", menuReceived);
       setProducts(menuReceived)
+    }
 
+    const initialiseBasket = () => {
+      const basketReceived =  getLocalStorage(username) //localStorage est synchrone donc pas besoin de await
+      setBasket(basketReceived)
     }
 
     useEffect(() => {    
       initialiseMenu()
+    }, [])
+
+    useEffect(() => {    
+      initialiseBasket()
     }, [])
     
 
