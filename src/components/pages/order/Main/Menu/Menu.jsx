@@ -34,8 +34,7 @@ export default function Menu() {
      const handleAddButton = (e, idProductToAdd) => {
       e.stopPropagation()
         // const productToAdd = products.find((product) => product.id === idProductToAdd)
-        handleAddToBasket(idProductToAdd)
-
+        handleAddToBasket(idProductToAdd, username)
      }
 
     const checkedIfProductIsClicked = (idMenu, idClickedOn) => { 
