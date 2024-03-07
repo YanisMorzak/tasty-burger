@@ -1,87 +1,93 @@
-import React, { useEffect, useState } from 'react'
-import { styled } from 'styled-components';
-import NavBar from './NavBar/NavBar';
-import Main from './Main/Main';
-import { theme } from '../../../theme';
-import OrderContext from '../../../context/OrderContext';
-import { EMPTY_PRODUCT } from '../../../enums/product';
-import { useProduct } from '../../../hooks/useProduct';
-import { useBasket } from '../../../hooks/useBasket';
-import { useParams } from 'react-router-dom';
-import { getMenu } from '../../../api/product';
-import { getLocalStorage } from '../../../utils/window';
-
+import React, { useEffect, useState } from "react";
+import { styled } from "styled-components";
+import NavBar from "./NavBar/NavBar";
+import Main from "./Main/Main";
+import { theme } from "../../../theme";
+import OrderContext from "../../../context/OrderContext";
+import { EMPTY_PRODUCT } from "../../../enums/product";
+import { useProduct } from "../../../hooks/useProduct";
+import { useBasket } from "../../../hooks/useBasket";
+import { useParams } from "react-router-dom";
+import { getMenu } from "../../../api/product";
+import { getLocalStorage } from "../../../utils/window";
 
 export default function OrderPage() {
-    const [isModeAdmin, setIsModeAdmin] = useState(false);
-    const [currentTabSelected, setCurrentTabSelected] = useState("add");
-    const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
-    const [isCollapse, setIsCollapse] = useState(false)
-    const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT)
-    const {handleAddProduct, handleDelete, handleEdit, resetProducts, products, setProducts} = useProduct()
-    const {basket, setBasket, handleAddToBasket, handleDeleteBasketProduct} = useBasket()
-    const {username} = useParams()
+  const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [isCollapse, setIsCollapse] = useState(false);
+  const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT);
+  const {
+    handleAddProduct,
+    handleDelete,
+    handleEdit,
+    resetProducts,
+    products,
+    setProducts,
+  } = useProduct();
+  const { basket, setBasket, handleAddToBasket, handleDeleteBasketProduct } =
+    useBasket();
+  const { username } = useParams();
 
-    const orderContextValue = {
-      isModeAdmin,
-      setIsModeAdmin,
+  const orderContextValue = {
+    isModeAdmin,
+    setIsModeAdmin,
 
-      currentTabSelected,
-      setCurrentTabSelected,
+    currentTabSelected,
+    setCurrentTabSelected,
 
-      isCollapse,
-      setIsCollapse,
+    isCollapse,
+    setIsCollapse,
 
-      products,
+    products,
 
-      basket,
-      handleAddToBasket,
-      handleDeleteBasketProduct,
-    
-      handleAddProduct,
-      handleDelete,
-      handleEdit,
-      resetProducts,
-      newProduct,
-      setNewProduct,
+    basket,
+    handleAddToBasket,
+    handleDeleteBasketProduct,
 
-      productSelected, 
-      setproductSelected,
+    handleAddProduct,
+    handleDelete,
+    handleEdit,
+    resetProducts,
+    newProduct,
+    setNewProduct,
 
-      username,
-    }
+    productSelected,
+    setproductSelected,
 
-    const initialiseMenu = async () => {
-      const menuReceived = await getMenu(username)
-      console.log("menuReceived", menuReceived);
-      setProducts(menuReceived)
-    }
+    username,
+  };
 
-    const initialiseBasket = () => {
-      const basketReceived =  getLocalStorage(username) //localStorage est synchrone donc pas besoin de await
-      setBasket(basketReceived)
-    }
+  const initialiseMenu = async () => {
+    const menuReceived = await getMenu(username);
+    // console.log("menuReceived", menuReceived);
+    setProducts(menuReceived);
+  };
 
-    useEffect(() => {    
-      initialiseMenu()
-    }, [])
+  const initialiseBasket = () => {
+    const basketReceived = getLocalStorage(username);
+    //localStorage est synchrone donc pas besoin de await
+    if (basketReceived) setBasket(basketReceived);
+  };
 
-    useEffect(() => {    
-      initialiseBasket()
-    }, [])
-    
+  useEffect(() => {
+    initialiseMenu();
+  }, []);
 
+  useEffect(() => {
+    initialiseBasket();
+  }, []);
 
   return (
     <OrderContext.Provider value={orderContextValue}>
       <OrderPageStyled>
-        <div className='container'>
+        <div className="container">
           <NavBar />
           <Main />
-        </div>         
+        </div>
       </OrderPageStyled>
     </OrderContext.Provider>
-  )
+  );
 }
 
 const OrderPageStyled = styled.div`
@@ -99,7 +105,4 @@ const OrderPageStyled = styled.div`
     flex-direction: column;
     border-radius: ${theme.borderRadius.extraRound};
   }
-
 `;
-
-
