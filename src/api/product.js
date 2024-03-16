@@ -18,6 +18,8 @@ export const getMenu = async (idUser) => {
   const docSnapshot = await getDoc(docRef);
   if (docSnapshot.exists) {
     const menuReceived = docSnapshot.data();
-    return menuReceived.menu;
+    if (menuReceived && menuReceived.menu) {
+      return menuReceived.menu;
+    }
   }
 };

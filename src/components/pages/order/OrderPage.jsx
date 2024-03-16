@@ -8,8 +8,7 @@ import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useProduct } from "../../../hooks/useProduct";
 import { useBasket } from "../../../hooks/useBasket";
 import { useParams } from "react-router-dom";
-import { getMenu } from "../../../api/product";
-import { getLocalStorage } from "../../../utils/window";
+import { initialiseUserSession } from "./helpers/initialiseUserSession";
 
 export default function OrderPage() {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
@@ -58,25 +57,8 @@ export default function OrderPage() {
     username,
   };
 
-  const initialiseMenu = async () => {
-    const menuReceived = await getMenu(username);
-    // console.log("menuReceived", menuReceived);
-    setProducts(menuReceived);
-  };
-
-  const initialiseBasket = () => {
-    const basketReceived = getLocalStorage(username);
-    //localStorage est synchrone donc pas besoin de await
-    if (basketReceived) setBasket(basketReceived);
-  };
-
-  const initialiseUserSession = async () => {
-    await initialiseMenu();
-    initialiseBasket();
-  };
-
   useEffect(() => {
-    initialiseUserSession();
+    initialiseUserSession(username, setProducts, setBasket);
   }, []);
 
   return (
