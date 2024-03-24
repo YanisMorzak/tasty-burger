@@ -1,61 +1,76 @@
-import React, { useState } from 'react'
-import { styled } from 'styled-components';
-import NavBar from './NavBar/NavBar';
-import Main from './Main/Main';
-import { theme } from '../../../theme';
-import OrderContext from '../../../context/OrderContext';
-import { EMPTY_PRODUCT } from '../../../enums/product';
-import { useProduct } from '../../../hooks/useProduct';
-import { useBasket } from '../../../hooks/useBasket';
-
+import React, { useEffect, useState } from "react";
+import { styled } from "styled-components";
+import NavBar from "./NavBar/NavBar";
+import Main from "./Main/Main";
+import { theme } from "../../../theme";
+import OrderContext from "../../../context/OrderContext";
+import { EMPTY_PRODUCT } from "../../../enums/product";
+import { useProduct } from "../../../hooks/useProduct";
+import { useBasket } from "../../../hooks/useBasket";
+import { useParams } from "react-router-dom";
+import { initialiseUserSession } from "./helpers/initialiseUserSession";
 
 export default function OrderPage() {
-    const [isModeAdmin, setIsModeAdmin] = useState(false);
-    const [currentTabSelected, setCurrentTabSelected] = useState("add");
-    const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT)
-    const [isCollapse, setIsCollapse] = useState(false)
-    const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT)
-    const {handleAddProduct, handleDelete, handleEdit, resetProducts, products} = useProduct()
-    const {basket, handleAddToBasket, handleDeleteBasketProduct} = useBasket()
+  const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [isCollapse, setIsCollapse] = useState(false);
+  const [productSelected, setproductSelected] = useState(EMPTY_PRODUCT);
+  const {
+    handleAddProduct,
+    handleDelete,
+    handleEdit,
+    resetProducts,
+    products,
+    setProducts,
+  } = useProduct();
+  const { basket, setBasket, handleAddToBasket, handleDeleteBasketProduct } =
+    useBasket();
+  const { username } = useParams();
 
-    const orderContextValue = {
-      isModeAdmin,
-      setIsModeAdmin,
+  const orderContextValue = {
+    isModeAdmin,
+    setIsModeAdmin,
 
-      currentTabSelected,
-      setCurrentTabSelected,
+    currentTabSelected,
+    setCurrentTabSelected,
 
-      isCollapse,
-      setIsCollapse,
+    isCollapse,
+    setIsCollapse,
 
-      products,
+    products,
 
-      basket,
-      handleAddToBasket,
-      handleDeleteBasketProduct,
-    
-      handleAddProduct,
-      handleDelete,
-      handleEdit,
-      resetProducts,
-      newProduct,
-      setNewProduct,
+    basket,
+    handleAddToBasket,
+    handleDeleteBasketProduct,
 
-      productSelected, 
-      setproductSelected,
-    }
+    handleAddProduct,
+    handleDelete,
+    handleEdit,
+    resetProducts,
+    newProduct,
+    setNewProduct,
 
+    productSelected,
+    setproductSelected,
+
+    username,
+  };
+
+  useEffect(() => {
+    initialiseUserSession(username, setProducts, setBasket);
+  }, []);
 
   return (
     <OrderContext.Provider value={orderContextValue}>
       <OrderPageStyled>
-        <div className='container'>
+        <div className="container">
           <NavBar />
           <Main />
-        </div>         
+        </div>
       </OrderPageStyled>
     </OrderContext.Provider>
-  )
+  );
 }
 
 const OrderPageStyled = styled.div`
@@ -73,7 +88,4 @@ const OrderPageStyled = styled.div`
     flex-direction: column;
     border-radius: ${theme.borderRadius.extraRound};
   }
-
 `;
-
-

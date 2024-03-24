@@ -1,12 +1,13 @@
 import { useState } from "react"
 import { fakeMenu } from "../fakeData/fakeMenu"
 import { deepClone } from "../utils/array"
+import { syncBothMenu } from "../api/product"
 
 export const useProduct = () => { 
-    const [products, setProducts] = useState(fakeMenu.LARGE)
+    const [products, setProducts] = useState()
 
     //gestionnaire de state (state handlers)
-    const handleAddProduct = (newProduct) => {
+    const handleAddProduct = (newProduct, username) => {
         // copie du state
         const copyProducts = deepClone(products)
   
@@ -15,17 +16,20 @@ export const useProduct = () => {
   
         // update du state
         setProducts(productsUpdated)
+        syncBothMenu(username, productsUpdated)
+        
       }
   
-      const handleDelete = (idOfProductDeleted) => {
+      const handleDelete = (idOfProductDeleted, username) => {
         const productsCopy = deepClone(products)
     
         const productsUpdated = productsCopy.filter((product) => product.id !== idOfProductDeleted)
     
         setProducts(productsUpdated)
+        syncBothMenu(username, productsUpdated)
       }
   
-      const handleEdit = (productBeingUpdated) => {
+      const handleEdit = (productBeingUpdated, username) => {
         // Copie du state (deep clone)
         const copyProducts = deepClone(products)
         
@@ -36,11 +40,13 @@ export const useProduct = () => {
   
         //Update du state
         setProducts(copyProducts)
+        syncBothMenu(username, copyProducts)
       }
   
-      const resetProducts = () => {
+      const resetProducts = (username) => {
         setProducts(fakeMenu.LARGE)
+        syncBothMenu(username, fakeMenu.LARGE)
       }
 
-      return {handleAddProduct, handleDelete, handleEdit, resetProducts, products}
+      return {handleAddProduct, handleDelete, handleEdit, resetProducts, products, setProducts}
  }
