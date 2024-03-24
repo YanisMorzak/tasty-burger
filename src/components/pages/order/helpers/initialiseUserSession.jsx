@@ -7,14 +7,12 @@ const initialiseMenu = async (username, setProducts) => {
   if (menuReceived) {
     setProducts(menuReceived);
   }
-  console.log("menuReceived: ", menuReceived);
 };
 
 const initialiseBasket = (username, setBasket) => {
   const basketReceived = getLocalStorage(username);
   //localStorage est synchrone donc pas besoin de await
   if (basketReceived) setBasket(basketReceived);
-  console.log("basketReceived: ", basketReceived);
 };
 
 export const initialiseUserSession = async (

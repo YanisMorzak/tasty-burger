@@ -11,7 +11,7 @@ export const getUser = async (idUser) => {
   }
 };
 
-export const createUser = (idUser) => {
+export const createUser = async (idUser) => {
   // CACHETTE
   const docRef = doc(db, "users", idUser);
 
@@ -22,7 +22,9 @@ export const createUser = (idUser) => {
   };
 
   // setDoc(CACHETTE, NOURRITURE)
-  setDoc(docRef, newDoc);
+  await setDoc(docRef, newDoc);
+
+  return newDoc;
 };
 
 export const authenticateUser = async (idUser) => {
@@ -32,6 +34,7 @@ export const authenticateUser = async (idUser) => {
 
   //2. sinon tu créé un newUser
   if (!existingUser) {
-    createUser(idUser);
+    return await createUser(idUser);
   }
+  return existingUser;
 };
